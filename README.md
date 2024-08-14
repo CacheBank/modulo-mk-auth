@@ -65,6 +65,10 @@ Para que o sistema gere os boletos corretamente, é preciso que estejam preenchi
 - CPF/CNPJ válido
 - Endereço (Logradouro, Nº, Bairro, Cidade e Estado)
 - Plano criado e vinculado
+- Os juros diários não podem ser maior que 0,60. Geralmente são 0,03% ao dia e que equivalente a 1% de juros ao mês.
+- A multa não pode ser maior que 20%. Geralmente a multa aplicada é 3% .
+
+Qualquer dúvida, você pode comunicar via e-mail suporte@cachebank.com.br ou falar com sua consultora dedicada.
 
 ### Ver boletos emitidos
 Após emitir um boleto, você poderá visualizar o boleto através do próprio mka. 
@@ -73,5 +77,4 @@ Após emitir um boleto, você poderá visualizar o boleto através do próprio m
 ### Ver Carnês emitidos
 Após emitir um carnê, você poderá visualizar através do próprio mka.
 Menu -> Financeiro -> Carnês em aberto -> Abrir | Escolha entre ver a capa ou a lista de boletos do carnê.
-
 

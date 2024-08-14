@@ -2,8 +2,9 @@
 <form name="form" id="form" method="post" action="configuration.php">
 
 <?php
-    include dirname(__FILE__) . DIRECTORY_SEPARATOR .'..'. DIRECTORY_SEPARATOR .'includes'.DIRECTORY_SEPARATOR.  'includes.hhvm';
 
+    include dirname(__FILE__) . DIRECTORY_SEPARATOR .'..'.DIRECTORY_SEPARATOR.  'db.hhvm';
+    include dirname(__FILE__) . DIRECTORY_SEPARATOR .'..'.DIRECTORY_SEPARATOR.'includes'.DIRECTORY_SEPARATOR. 'utils.hhvm';
     $config=getConfig($pdo);
     $clientId=$config->client_id;
     $clientSecret=$config->client_secret;

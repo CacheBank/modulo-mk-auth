@@ -1,5 +1,7 @@
 <?php
-include dirname(__FILE__) . DIRECTORY_SEPARATOR .'includes'.DIRECTORY_SEPARATOR.  'includes.hhvm';
+  include dirname(__FILE__) . DIRECTORY_SEPARATOR . 'db.hhvm';
+  include dirname(__FILE__) . DIRECTORY_SEPARATOR.'includes'.DIRECTORY_SEPARATOR. 'utils.hhvm';
+
   echo '
   Criando tabelas
   ';

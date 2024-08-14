@@ -19,8 +19,9 @@
 </style>
 
 <?php
-include '/opt/mk-auth/admin/addons/cachebank/includes/includes.hhvm';
-//include '../includes/includes.hhvm';
+
+ include '/opt/mk-auth/admin/addons/cachebank/db.hhvm';
+ include '/opt/mk-auth/admin/addons/cachebank/includes/utils.hhvm';
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {

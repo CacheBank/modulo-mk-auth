@@ -1,11 +1,14 @@
 <?php
-include '/opt/mk-auth/admin/addons/cachebank/includes/includes.hhvm';
-//include 'includes.hhvm';
+ include '/opt/mk-auth/admin/addons/cachebank/db.hhvm';
+ include '/opt/mk-auth/admin/addons/cachebank/includes/utils.hhvm';
+ include '/opt/mk-auth/admin/addons/cachebank/includes/client_v2_api.php';
 
 // Definir cabeçalhos de resposta para JSON
 header('Content-Type: application/json');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $config = getConfig($pdo);
+
     // Obter o conteúdo da solicitação
     $input = file_get_contents('php://input');
     log_message("Payload recebido: " . $input);
@@ -75,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
         log_message("Consultando dados externos da transação WebHookId: " . $last_id);
-        $paymentRes=obterDadosWebHookBoleto($notification_id, $idtransaction);
+        $paymentRes=obterDadosWebHookBoleto($pdo, $notification_id, $idtransaction);
         $amountPaid=$paymentRes["status"]===7?$paymentRes["valortotal"]:$paymentRes["valorpago"];
 
         log_message("Atribuindo valores ao lançamento " . $last_id);

@@ -10,6 +10,11 @@ echo '
 Extraindo Dados';
 shell_exec('unzip  /opt/mk-auth/admin/addons/cachebank/mk-auth.zip -d /opt/mk-auth/admin/addons/cachebank;');
 
+
+shell_exec('touch /tmp/cachebank_log.txt');
+shell_exec('chown www-data:www-data /tmp/cachebank_log.txt');
+shell_exec('chmod 777 /tmp/cachebank_log.txt');
+
 echo '
 Copiando arquivos';
 shell_exec('cp -rf /opt/mk-auth/admin/addons/cachebank/modulo-mk-auth-master/* /opt/mk-auth/admin/addons/cachebank/');

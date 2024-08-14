@@ -1,8 +1,13 @@
 <?php
+    require '/opt/mk-auth/admin/addons/cachebank/db.hhvm';
+    require '/opt/mk-auth/admin/addons/cachebank/includes/utils.hhvm';
 
-    include 'includes.hhvm';
+    require '/opt/mk-auth/admin/addons/cachebank/includes/client_v2_api.php';
+    echo '
+    Iniciando sincronização de boletos
+    ';
+    $config = getConfig($pdo);
     log_message("Iniciando geração");
-
 
     if(checkLockTransaction()){
        echo 'Erro ao executar | Já existe uma execução em andamento';
@@ -24,7 +29,7 @@
             sis_boleto.desconto as lanc_desconto,
             sis_boleto.tipo_desc as lanc_tipo_desc,
             sis_boleto.multa as lanc_multa,
-            sis_boleto.juros*30 as lanc_juros,
+            sis_boleto.juros * 30 as lanc_juros,
 
 
             sis_cliente.id as cliente_id,
@@ -62,7 +67,7 @@
 
         while ($fatura = $aberto_result->fetch_assoc()) {
 
-            $res=generateBoleto($fatura);
+            $res=generateBoleto($pdo, $fatura);
             if(empty($res["success"])){
                 log_message("Error emissão bolet". json_encode($res));
                 var_dump($res);

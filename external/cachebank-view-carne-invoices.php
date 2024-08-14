@@ -1,9 +1,9 @@
 <form id="myForm" action="https://fatura.cachebank.com.br/checkout/v1/show/selected_invoices" method="POST">
 
 <?php
-include '/opt/mk-auth/admin/addons/cachebank/includes/includes.hhvm';
-//include '../includes/includes.hhvm';
-
+include '/opt/mk-auth/admin/addons/cachebank/db.hhvm';
+ include '/opt/mk-auth/admin/addons/cachebank/includes/utils.hhvm';
+ 
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     if(empty($_GET["carne"])){

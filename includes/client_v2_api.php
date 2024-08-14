@@ -1,6 +1,6 @@
 <?php
 
-function client($params, $methodUrl, $method){
+function client($pdo, $params, $methodUrl, $method){
 
     $config = getConfig($pdo);
 
@@ -34,7 +34,7 @@ function client($params, $methodUrl, $method){
     return $responseJson;
 }
 
-function mountParamsCreatePayment($params){
+function mountParamsCreatePayment($pdo,$params){
     $config = getConfig($pdo);
     
     $payload=[];
@@ -81,7 +81,7 @@ function mountParamsCreatePayment($params){
     }
 
     if(isset($params["sis_lanc_id"])){
-        $payload['referenciapedido'] = 'mka'.$params["sis_lanc_id"];
+        $payload['referenciapedido'] = 'mka-'.$params["sis_lanc_id"];
     }
 
     // Itens
@@ -175,20 +175,20 @@ function mountParamsCreatePayment($params){
     }
     return $payload;
 }
-function generateBoleto($params){
-    $payload=mountParamsCreatePayment($params);
+function generateBoleto($pdo,$params){
+    $payload=mountParamsCreatePayment($pdo,$params);
     
-    $client=client($payload, 'transacao/boleto','POST');
+    $client=client($pdo, $payload, 'transacao/boleto','POST');
 
     return $client;
 }
 
-function obterDadosWebHookBoleto($notification_id, $idtransaction){
+function obterDadosWebHookBoleto($pdo,$notification_id, $idtransaction){
     $payload=[
         'notification_id' => $notification_id,
         'idtransaction' => $idtransaction
     ];
-    $client=client($payload, 'notificacao/transacao','POST');
+    $client=client($pdo,$payload, 'notificacao/transacao','POST');
 
     return $client;
 }
