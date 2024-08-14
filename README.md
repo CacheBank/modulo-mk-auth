@@ -53,10 +53,14 @@ Aperte em Gravar
 Agora, a partir do momento em que cadastrar um cliente no MK-AUTH e definir a conta cachebank, o sistema irá sincronizar com a Cachê Bank para gerar os boletos a cada 1 minuto.
 
 
-
-Menu -> Financeiro -> Todos os titulos -> Visualizar
-
 ## Observações Importante
+
+Desative a geração do numero do titulo no menu Opções -> Configurar Recursos -> Manter numero de titulos, defina para a opção "Não".
+
+- A Cachê Bank possui um serviço de envio de e-mails, SMS, Torpedo de Voz e WhatsApp de cobrança automática.
+- Por padrão, é enviado e-mails aos seus clientes quando a fatura estiver perto vencer, vencendo ou criada.
+- Então, para não haver duplo envio, desative o envio de e-mail de fatura no mk-auth
+
 
 Para que o sistema gere os boletos corretamente, é preciso que estejam preenchidos corretamente
 - Nome do cliente
@@ -68,13 +72,16 @@ Para que o sistema gere os boletos corretamente, é preciso que estejam preenchi
 - Os juros diários não podem ser maior que 0,60. Geralmente são 0,03% ao dia e que equivalente a 1% de juros ao mês.
 - A multa não pode ser maior que 20%. Geralmente a multa aplicada é 3% .
 
-Qualquer dúvida, você pode comunicar via e-mail suporte@cachebank.com.br ou falar com sua consultora dedicada.
+Qualquer dúvida, você pode comunicar via e-mail suporte@cachebank.com.br ou falar com a sua consultora.
 
 ### Ver boletos emitidos
 Após emitir um boleto, você poderá visualizar o boleto através do próprio mka. 
 
+Menu -> Financeiro -> Todos os titulos -> Visualizar
+
 
 ### Ver Carnês emitidos
 Após emitir um carnê, você poderá visualizar através do próprio mka.
+
 Menu -> Financeiro -> Carnês em aberto -> Abrir | Escolha entre ver a capa ou a lista de boletos do carnê.
 
