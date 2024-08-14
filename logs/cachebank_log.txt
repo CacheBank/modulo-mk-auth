@@ -1,0 +1,360 @@
+[2024-08-11 01:48:50] Error emissão boleto .Teste fulano: 1
+[2024-08-11 01:48:50] Error emissão boleto .Teste fulano: 1
+[2024-08-11 01:48:51] Error emissão boleto .Teste fulano: 1
+[2024-08-11 01:48:51] Error emissão boleto .Teste fulano: 1
+[2024-08-11 01:51:10] Error emissão boleto .Teste fulano: 1
+[2024-08-11 01:51:11] Error emissão boleto .Teste fulano: 1
+[2024-08-11 01:51:11] Error emissão boleto .Teste fulano: 1
+[2024-08-11 01:51:12] Error emissão boleto .Teste fulano: 1
+[2024-08-11 01:51:53] Error emissão boleto .Teste fulano: 1
+[2024-08-11 01:54:14] Error emissão boleto .Teste fulano: {"fullname":["O nome\/raz\u00e3o social precisa ser informada."],"tax_identifier":["O cpf\/cnpj precisa ser informado."],"email":["O e-mail precisa ser informado."],"phone":["O telefone precisa ser informado."],"zipcode":["validation.required_if"],"street":["validation.required_if"],"number":["validation.required_if"],"district":["validation.required_if"],"city":["validation.required_if"],"state":["validation.required_if"],"due_date":["O vencimento precisa ser preenchido"],"itens":["validation.required"]}
+[2024-08-11 01:54:14] Error emissão boleto .Teste fulano: {"fullname":["O nome\/raz\u00e3o social precisa ser informada."],"tax_identifier":["O cpf\/cnpj precisa ser informado."],"email":["O e-mail precisa ser informado."],"phone":["O telefone precisa ser informado."],"zipcode":["validation.required_if"],"street":["validation.required_if"],"number":["validation.required_if"],"district":["validation.required_if"],"city":["validation.required_if"],"state":["validation.required_if"],"due_date":["O vencimento precisa ser preenchido"],"itens":["validation.required"]}
+[2024-08-11 01:54:15] Error emissão boleto .Teste fulano: {"fullname":["O nome\/raz\u00e3o social precisa ser informada."],"tax_identifier":["O cpf\/cnpj precisa ser informado."],"email":["O e-mail precisa ser informado."],"phone":["O telefone precisa ser informado."],"zipcode":["validation.required_if"],"street":["validation.required_if"],"number":["validation.required_if"],"district":["validation.required_if"],"city":["validation.required_if"],"state":["validation.required_if"],"due_date":["O vencimento precisa ser preenchido"],"itens":["validation.required"]}
+[2024-08-11 01:54:15] Error emissão boleto .Teste fulano: {"fullname":["O nome\/raz\u00e3o social precisa ser informada."],"tax_identifier":["O cpf\/cnpj precisa ser informado."],"email":["O e-mail precisa ser informado."],"phone":["O telefone precisa ser informado."],"zipcode":["validation.required_if"],"street":["validation.required_if"],"number":["validation.required_if"],"district":["validation.required_if"],"city":["validation.required_if"],"state":["validation.required_if"],"due_date":["O vencimento precisa ser preenchido"],"itens":["validation.required"]}
+[2024-08-11 03:17:38] Payload recebido: {
+  "notification_id": "9cbcc796-59a6-4519-820c-819af72312db",
+  "notification_date": "2024-08-11T03:16:03.052717Z",
+  "idtransaction": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "idtransacao": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "client_id": "apk64c22c1f7ec8add3.18957405"
+}
+[2024-08-11 03:17:55] Payload recebido: {
+  "notification_id": "9cbcc796-59a6-4519-820c-819af72312db",
+  "notification_date": "2024-08-11T03:16:03.052717Z",
+  "idtransaction": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "idtransacao": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "client_id": "apk64c22c1f7ec8add3.18957405"
+}
+[2024-08-11 03:18:45] Payload recebido: {
+  "notification_id": "9cbcc796-59a6-4519-820c-819af72312db",
+  "notification_date": "2024-08-11T03:16:03.052717Z",
+  "idtransaction": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "idtransacao": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "client_id": "apk64c22c1f7ec8add3.18957405"
+}
+[2024-08-11 03:18:45] Inserção bem-sucedida em cachebank_webhook_logs, ID: 
+[2024-08-11 03:19:17] Payload recebido: {
+  "notification_id": "9cbcc796-59a6-4519-820c-819af72312db",
+  "notification_date": "2024-08-11T03:16:03.052717Z",
+  "idtransaction": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "idtransacao": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "client_id": "apk64c22c1f7ec8add3.18957405"
+}
+[2024-08-11 03:19:17] Inserção bem-sucedida em cachebank_webhook_logs, ID: 
+[2024-08-11 03:20:42] Payload recebido: {
+  "notification_id": "9cbcc796-59a6-4519-820c-819af72312db",
+  "notification_date": "2024-08-11T03:16:03.052717Z",
+  "idtransaction": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "idtransacao": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "client_id": "apk64c22c1f7ec8add3.18957405"
+}
+[2024-08-11 03:20:42] Inserção bem-sucedida em cachebank_webhook_logs, ID: 
+[2024-08-11 03:20:42] Consultando dados externos da transação WebHookId: 
+[2024-08-11 03:20:43] Atribuindo valores ao lançamento 
+[2024-08-11 03:21:16] Payload recebido: {
+  "notification_id": "9cbcc796-59a6-4519-820c-819af72312db",
+  "notification_date": "2024-08-11T03:16:03.052717Z",
+  "idtransaction": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "idtransacao": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "client_id": "apk64c22c1f7ec8add3.18957405"
+}
+[2024-08-11 03:21:16] Inserção bem-sucedida em cachebank_webhook_logs, ID: 
+[2024-08-11 03:21:16] Consultando dados externos da transação WebHookId: 
+[2024-08-11 03:21:17] Atribuindo valores ao lançamento 
+[2024-08-11 03:22:21] Payload recebido: {
+  "notification_id": "9cbcc796-59a6-4519-820c-819af72312db",
+  "notification_date": "2024-08-11T03:16:03.052717Z",
+  "idtransaction": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "idtransacao": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "client_id": "apk64c22c1f7ec8add3.18957405"
+}
+[2024-08-11 03:22:28] Payload recebido: {
+  "notification_id": "9cbcc796-59a6-4519-820c-819af72312db",
+  "notification_date": "2024-08-11T03:16:03.052717Z",
+  "idtransaction": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "idtransacao": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "client_id": "apk64c22c1f7ec8add3.18957405"
+}
+[2024-08-11 03:22:28] Inserção bem-sucedida em cachebank_webhook_logs, ID: 11
+[2024-08-11 03:22:28] Consultando dados externos da transação WebHookId: 11
+[2024-08-11 03:22:28] Atribuindo valores ao lançamento 11
+[2024-08-11 03:23:19] Payload recebido: {
+  "notification_id": "9cbcc796-59a6-4519-820c-819af72312db",
+  "notification_date": "2024-08-11T03:16:03.052717Z",
+  "idtransaction": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "idtransacao": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "client_id": "apk64c22c1f7ec8add3.18957405"
+}
+[2024-08-11 03:23:19] Inserção bem-sucedida em cachebank_webhook_logs, ID: 12
+[2024-08-11 03:23:19] Consultando dados externos da transação WebHookId: 12
+[2024-08-11 03:23:19] Atribuindo valores ao lançamento 12
+[2024-08-11 03:23:26] Payload recebido: {
+  "notification_id": "9cbcc796-59a6-4519-820c-819af72312db",
+  "notification_date": "2024-08-11T03:16:03.052717Z",
+  "idtransaction": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "idtransacao": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "client_id": "apk64c22c1f7ec8add3.18957405"
+}
+[2024-08-11 03:23:26] Inserção bem-sucedida em cachebank_webhook_logs, ID: 13
+[2024-08-11 03:23:26] Consultando dados externos da transação WebHookId: 13
+[2024-08-11 03:23:27] Atribuindo valores ao lançamento 13
+[2024-08-11 03:24:42] Payload recebido: {
+  "notification_id": "9cbcc796-59a6-4519-820c-819af72312db",
+  "notification_date": "2024-08-11T03:16:03.052717Z",
+  "idtransaction": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "idtransacao": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "client_id": "apk64c22c1f7ec8add3.18957405"
+}
+[2024-08-11 03:24:42] Inserção bem-sucedida em cachebank_webhook_logs, ID: 14
+[2024-08-11 03:24:42] Consultando dados externos da transação WebHookId: 14
+[2024-08-11 03:24:43] Atribuindo valores ao lançamento 14
+[2024-08-11 03:25:32] Payload recebido: {
+  "notification_id": "9cbcc796-59a6-4519-820c-819af72312db",
+  "notification_date": "2024-08-11T03:16:03.052717Z",
+  "idtransaction": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "idtransacao": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "client_id": "apk64c22c1f7ec8add3.18957405"
+}
+[2024-08-11 03:25:32] Inserção bem-sucedida em cachebank_webhook_logs, ID: 15
+[2024-08-11 03:25:32] Consultando dados externos da transação WebHookId: 15
+[2024-08-11 03:25:32] Atribuindo valores ao lançamento 15
+[2024-08-11 03:25:37] Payload recebido: {
+  "notification_id": "9cbcc796-59a6-4519-820c-819af72312db",
+  "notification_date": "2024-08-11T03:16:03.052717Z",
+  "idtransaction": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "idtransacao": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "client_id": "apk64c22c1f7ec8add3.18957405"
+}
+[2024-08-11 03:25:37] Inserção bem-sucedida em cachebank_webhook_logs, ID: 16
+[2024-08-11 03:25:37] Consultando dados externos da transação WebHookId: 16
+[2024-08-11 03:25:37] Atribuindo valores ao lançamento 16
+[2024-08-11 03:26:41] Payload recebido: {
+  "notification_id": "9cbcc796-59a6-4519-820c-819af72312db",
+  "notification_date": "2024-08-11T03:16:03.052717Z",
+  "idtransaction": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "idtransacao": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "client_id": "apk64c22c1f7ec8add3.18957405"
+}
+[2024-08-11 03:26:41] Inserção bem-sucedida em cachebank_webhook_logs, ID: 17
+[2024-08-11 03:26:41] Consultando dados externos da transação WebHookId: 17
+[2024-08-11 03:26:42] Atribuindo valores ao lançamento 17
+[2024-08-11 03:26:51] Payload recebido: {
+  "notification_id": "9cbcc796-59a6-4519-820c-819af72312db",
+  "notification_date": "2024-08-11T03:16:03.052717Z",
+  "idtransaction": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "idtransacao": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "client_id": "apk64c22c1f7ec8add3.18957405"
+}
+[2024-08-11 03:26:51] Inserção bem-sucedida em cachebank_webhook_logs, ID: 18
+[2024-08-11 03:26:51] Consultando dados externos da transação WebHookId: 18
+[2024-08-11 03:26:51] Atribuindo valores ao lançamento 18
+[2024-08-11 03:27:03] Payload recebido: {
+  "notification_id": "9cbcc796-59a6-4519-820c-819af72312db",
+  "notification_date": "2024-08-11T03:16:03.052717Z",
+  "idtransaction": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "idtransacao": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "client_id": "apk64c22c1f7ec8add3.18957405"
+}
+[2024-08-11 03:27:03] Inserção bem-sucedida em cachebank_webhook_logs, ID: 19
+[2024-08-11 03:27:03] Consultando dados externos da transação WebHookId: 19
+[2024-08-11 03:27:04] Atribuindo valores ao lançamento 19
+[2024-08-11 03:28:36] Payload recebido: {
+  "notification_id": "9cbcc796-59a6-4519-820c-819af72312db",
+  "notification_date": "2024-08-11T03:16:03.052717Z",
+  "idtransaction": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "idtransacao": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "client_id": "apk64c22c1f7ec8add3.18957405"
+}
+[2024-08-11 03:28:36] Inserção bem-sucedida em cachebank_webhook_logs, ID: 20
+[2024-08-11 03:28:36] Consultando dados externos da transação WebHookId: 20
+[2024-08-11 03:28:36] Atribuindo valores ao lançamento 20
+[2024-08-11 03:28:48] Payload recebido: {
+  "notification_id": "9cbcc796-59a6-4519-820c-819af72312db",
+  "notification_date": "2024-08-11T03:16:03.052717Z",
+  "idtransaction": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "idtransacao": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "client_id": "apk64c22c1f7ec8add3.18957405"
+}
+[2024-08-11 03:28:48] Inserção bem-sucedida em cachebank_webhook_logs, ID: 21
+[2024-08-11 03:28:48] Consultando dados externos da transação WebHookId: 21
+[2024-08-11 03:28:48] Atribuindo valores ao lançamento 21
+[2024-08-11 03:30:27] Payload recebido: {
+  "notification_id": "9cbcc796-59a6-4519-820c-819af72312db",
+  "notification_date": "2024-08-11T03:16:03.052717Z",
+  "idtransaction": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "idtransacao": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "client_id": "apk64c22c1f7ec8add3.18957405"
+}
+[2024-08-11 03:30:27] Inserção bem-sucedida em cachebank_webhook_logs, ID: 22
+[2024-08-11 03:30:27] Consultando dados externos da transação WebHookId: 22
+[2024-08-11 03:30:28] Atribuindo valores ao lançamento 22
+[2024-08-11 03:31:46] Payload recebido: {
+  "notification_id": "9cbcc796-59a6-4519-820c-819af72312db",
+  "notification_date": "2024-08-11T03:16:03.052717Z",
+  "idtransaction": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "idtransacao": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "client_id": "apk64c22c1f7ec8add3.18957405"
+}
+[2024-08-11 03:31:46] Inserção bem-sucedida em cachebank_webhook_logs, ID: 23
+[2024-08-11 03:31:46] Consultando dados externos da transação WebHookId: 23
+[2024-08-11 03:31:46] Atribuindo valores ao lançamento 23
+[2024-08-11 03:33:05] Payload recebido: {
+  "notification_id": "9cbcc796-59a6-4519-820c-819af72312db",
+  "notification_date": "2024-08-11T03:16:03.052717Z",
+  "idtransaction": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "idtransacao": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "client_id": "apk64c22c1f7ec8add3.18957405"
+}
+[2024-08-11 03:33:05] Inserção bem-sucedida em cachebank_webhook_logs, ID: 24
+[2024-08-11 03:33:05] Consultando dados externos da transação WebHookId: 24
+[2024-08-11 03:33:05] Atribuindo valores ao lançamento 24
+[2024-08-11 03:33:37] Payload recebido: {
+  "notification_id": "9cbcc796-59a6-4519-820c-819af72312db",
+  "notification_date": "2024-08-11T03:16:03.052717Z",
+  "idtransaction": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "idtransacao": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "client_id": "apk64c22c1f7ec8add3.18957405"
+}
+[2024-08-11 03:33:37] Inserção bem-sucedida em cachebank_webhook_logs, ID: 25
+[2024-08-11 03:33:37] Consultando dados externos da transação WebHookId: 25
+[2024-08-11 03:33:37] Atribuindo valores ao lançamento 25
+[2024-08-11 03:34:54] Payload recebido: {
+  "notification_id": "9cbcc796-59a6-4519-820c-819af72312db",
+  "notification_date": "2024-08-11T03:16:03.052717Z",
+  "idtransaction": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "idtransacao": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "client_id": "apk64c22c1f7ec8add3.18957405"
+}
+[2024-08-11 03:34:54] Inserção bem-sucedida em cachebank_webhook_logs, ID: 26
+[2024-08-11 03:34:54] Consultando dados externos da transação WebHookId: 26
+[2024-08-11 03:34:54] Atribuindo valores ao lançamento 26
+[2024-08-11 03:36:49] Payload recebido: {
+  "notification_id": "9cbcc796-59a6-4519-820c-819af72312db",
+  "notification_date": "2024-08-11T03:16:03.052717Z",
+  "idtransaction": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "idtransacao": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "client_id": "apk64c22c1f7ec8add3.18957405"
+}
+[2024-08-11 03:36:49] Inserção bem-sucedida em cachebank_webhook_logs, ID: 27
+[2024-08-11 03:36:49] Consultando dados externos da transação WebHookId: 27
+[2024-08-11 03:36:50] Atribuindo valores ao lançamento 27
+[2024-08-11 03:37:16] Payload recebido: {
+  "notification_id": "9cbcc796-59a6-4519-820c-819af72312db",
+  "notification_date": "2024-08-11T03:16:03.052717Z",
+  "idtransaction": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "idtransacao": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "client_id": "apk64c22c1f7ec8add3.18957405"
+}
+[2024-08-11 03:37:16] Inserção bem-sucedida em cachebank_webhook_logs, ID: 28
+[2024-08-11 03:37:16] Consultando dados externos da transação WebHookId: 28
+[2024-08-11 03:37:17] Atribuindo valores ao lançamento 28
+[2024-08-11 03:38:11] Payload recebido: {
+  "notification_id": "9cbcc796-59a6-4519-820c-819af72312db",
+  "notification_date": "2024-08-11T03:16:03.052717Z",
+  "idtransaction": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "idtransacao": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "client_id": "apk64c22c1f7ec8add3.18957405"
+}
+[2024-08-11 03:38:11] Inserção bem-sucedida em cachebank_webhook_logs, ID: 29
+[2024-08-11 03:38:11] Consultando dados externos da transação WebHookId: 29
+[2024-08-11 03:38:12] Atribuindo valores ao lançamento 29
+[2024-08-11 03:38:29] Payload recebido: {
+  "notification_id": "9cbcc796-59a6-4519-820c-819af72312db",
+  "notification_date": "2024-08-11T03:16:03.052717Z",
+  "idtransaction": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "idtransacao": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "client_id": "apk64c22c1f7ec8add3.18957405"
+}
+[2024-08-11 03:38:29] Inserção bem-sucedida em cachebank_webhook_logs, ID: 30
+[2024-08-11 03:38:29] Consultando dados externos da transação WebHookId: 30
+[2024-08-11 03:38:30] Atribuindo valores ao lançamento 30
+[2024-08-11 03:38:54] Payload recebido: {
+  "notification_id": "9cbcc796-59a6-4519-820c-819af72312db",
+  "notification_date": "2024-08-11T03:16:03.052717Z",
+  "idtransaction": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "idtransacao": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "client_id": "apk64c22c1f7ec8add3.18957405"
+}
+[2024-08-11 03:38:54] Inserção bem-sucedida em cachebank_webhook_logs, ID: 31
+[2024-08-11 03:38:54] Consultando dados externos da transação WebHookId: 31
+[2024-08-11 03:38:54] Atribuindo valores ao lançamento 31
+[2024-08-11 03:39:01] Payload recebido: {
+  "notification_id": "9cbcc796-59a6-4519-820c-819af72312db",
+  "notification_date": "2024-08-11T03:16:03.052717Z",
+  "idtransaction": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "idtransacao": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "client_id": "apk64c22c1f7ec8add3.18957405"
+}
+[2024-08-11 03:39:01] Inserção bem-sucedida em cachebank_webhook_logs, ID: 32
+[2024-08-11 03:39:01] Consultando dados externos da transação WebHookId: 32
+[2024-08-11 03:39:02] Atribuindo valores ao lançamento 32
+[2024-08-11 03:42:09] Payload recebido: {
+  "notification_id": "9cbcc796-59a6-4519-820c-819af72312db",
+  "notification_date": "2024-08-11T03:16:03.052717Z",
+  "idtransaction": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "idtransacao": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "client_id": "apk64c22c1f7ec8add3.18957405"
+}
+[2024-08-11 03:42:09] Consultando dados externos da transação WebHookId: 
+[2024-08-11 03:42:10] Atribuindo valores ao lançamento 
+[2024-08-11 03:42:36] Payload recebido: {
+  "notification_id": "9cbcc796-59a6-4519-820c-819af72312db",
+  "notification_date": "2024-08-11T03:16:03.052717Z",
+  "idtransaction": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "idtransacao": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "client_id": "apk64c22c1f7ec8add3.18957405"
+}
+[2024-08-11 03:42:36] Consultando dados externos da transação WebHookId: 
+[2024-08-11 03:42:36] Atribuindo valores ao lançamento 
+[2024-08-11 03:42:52] Payload recebido: {
+  "notification_id": "9cbcc796-59a6-4519-820c-819af72312db",
+  "notification_date": "2024-08-11T03:16:03.052717Z",
+  "idtransaction": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "idtransacao": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "client_id": "apk64c22c1f7ec8add3.18957405"
+}
+[2024-08-11 03:42:52] Consultando dados externos da transação WebHookId: 22
+[2024-08-11 03:42:53] Atribuindo valores ao lançamento 22
+[2024-08-11 03:43:09] Payload recebido: {
+  "notification_id": "9cbcc796-59a6-4519-820c-819af72312db",
+  "notification_date": "2024-08-11T03:16:03.052717Z",
+  "idtransaction": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "idtransacao": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "client_id": "apk64c22c1f7ec8add3.18957405"
+}
+[2024-08-11 03:43:09] Inserção bem-sucedida em cachebank_webhook_logs, ID: 33
+[2024-08-11 03:43:09] Consultando dados externos da transação WebHookId: 33
+[2024-08-11 03:43:10] Atribuindo valores ao lançamento 33
+[2024-08-11 03:43:19] Payload recebido: {
+  "notification_id": "9cbcc796-59a6-4519-820c-819af72312db",
+  "notification_date": "2024-08-11T03:16:03.052717Z",
+  "idtransaction": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "idtransacao": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "client_id": "apk64c22c1f7ec8add3.18957405"
+}
+[2024-08-11 03:43:19] Consultando dados externos da transação WebHookId: 33
+[2024-08-11 03:43:20] Atribuindo valores ao lançamento 33
+[2024-08-11 03:43:26] Payload recebido: {
+  "notification_id": "9cbcc796-59a6-4519-820c-819af72312db",
+  "notification_date": "2024-08-11T03:16:03.052717Z",
+  "idtransaction": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "idtransacao": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "client_id": "apk64c22c1f7ec8add3.18957405"
+}
+[2024-08-11 03:43:26] Consultando dados externos da transação WebHookId: 33
+[2024-08-11 03:43:27] Atribuindo valores ao lançamento 33
+[2024-08-11 03:46:23] Payload recebido: {
+  "notification_id": "9cbcc796-59a6-4519-820c-819af72312db",
+  "notification_date": "2024-08-11T03:16:03.052717Z",
+  "idtransaction": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "idtransacao": "9cbcc491-1fea-4577-b911-3478d0868512",
+  "client_id": "apk64c22c1f7ec8add3.18957405"
+}
+[2024-08-11 03:46:23] Consultando dados externos da transação WebHookId: 33
+[2024-08-11 03:46:23] Atribuindo valores ao lançamento 33
+[2024-08-12 17:25:43] Erro ao executar | Já existe uma execução em andamento
+[2024-08-12 17:29:13] Erro ao executar | Já existe uma execução em andamento
+[2024-08-12 17:29:20] Erro ao executar | Já existe uma execução em andamento
+[2024-08-12 20:15:56] Erro ao executar | Já existe uma execução em andamento
+[2024-08-12 20:18:32] Error emissão bolet{"success":false,"message":{"error":["Voc\u00ea n\u00e3o tem autoriza\u00e7\u00e3o"]},"code":"a2"}
+[2024-08-12 20:18:33] Error emissão bolet{"success":false,"message":{"error":["Voc\u00ea n\u00e3o tem autoriza\u00e7\u00e3o"]},"code":"a2"}

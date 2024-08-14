@@ -1,0 +1,19 @@
+<?php
+
+$hostname = "localhost";
+$username = "root";
+$password = "vertrigo";
+
+$dbname = "mkradius";
+
+$conn = new mysqli($hostname, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Conexão falhou: " . $conn->connect_error);
+}
+
+$pdo = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
+
+
+?>
+

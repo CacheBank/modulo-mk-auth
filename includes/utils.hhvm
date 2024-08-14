@@ -1,0 +1,104 @@
+<?php
+
+function getConfig($pdo){
+    // Obtem os dados da config
+    $query = "SELECT *
+                FROM cachebank_config limit 1";
+    $stmt = $pdo->prepare($query);
+    if (!$stmt) {
+        throw new Exception("Erro ao preparar declaração SQL para selecionar de pix_info: " . $pdo->error);
+    }
+    $stmt->execute();
+    $resDb=$stmt->fetch(PDO::FETCH_ASSOC);
+
+    return (object) $resDb;
+}
+function utf8ize($mixed) {
+    if (is_array($mixed)) {
+        foreach ($mixed as $key => $value) {
+            $mixed[$key] = utf8ize($value);
+        }
+    } else if (is_string($mixed)) {
+        return utf8_encode($mixed);
+    }
+    return $mixed;
+}
+
+function log_message($message) {
+    $log_file = '/tmp/cachebank_log.txt';
+    $time = date('Y-m-d H:i:s');
+    $log_message = "[$time] $message" . PHP_EOL;
+    file_put_contents($log_file, $log_message, FILE_APPEND);
+}
+
+function getStatusPaymentName($status_id){
+    if($status_id==0){
+        $statusName='pendente';
+    }else if($status_id==1){
+        $statusName='pago';
+        }else if($status_id==2){
+             $statusName='pago';
+        }else if($status_id==3){
+             $statusName='cancelado';
+        }else if($status_id==4){
+             $statusName='Reembolsado';
+        }else if($status_id==5){
+             $statusName='ChargeBack';
+        }else if($status_id==6){
+             $statusName='Reembolso Solicitado';
+        }else if($status_id==7){
+             $statusName='pago';
+        }else if($status_id==8){
+             $statusName='reservado';
+        }else if($status_id==9){
+             $statusName='pago parcialmente';
+        }else if($status_id==10){
+             $statusName='expirada';
+        }
+        return $statusName;
+}
+
+function lockTransaction(){
+    $file =  dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'lock.tmp';
+    if(!is_file($file)){
+        $contents = 'Emissão de boleto em andamento';         
+        file_put_contents($file, $contents);  
+    }
+}
+
+
+function tableExists($pdo, $table) {
+
+    // Try a select statement against the table
+    // Run it in try-catch in case PDO is in ERRMODE_EXCEPTION.
+    try {
+        $result = $pdo->query("SELECT 1 FROM {$table} LIMIT 1");
+    } catch (Exception $e) {
+        // We got an exception (table not found)
+        return FALSE;
+    }
+
+    // Result is either boolean FALSE (no table found) or PDOStatement Object (table found)
+    return $result !== FALSE;
+}
+
+function unlockTransaction(){
+
+    $file =  dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'lock.tmp';
+    if(is_file($file)){
+        unlink($file);  
+    }
+}
+
+function checkLockTransaction(){
+    $file =  dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'lock.tmp';
+    if(is_file($file)){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+
+?>
+
