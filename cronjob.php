@@ -45,7 +45,24 @@ Checando e realizando atualizando do módulo
 Checando e realizando atualizando do módulo
 ';
    include dirname(__FILE__) . DIRECTORY_SEPARATOR . 'update.php';
-}else if(date('H') == 20 && date('i') == 00) { 
+}
+else if(date('H') == 17 && date('i') == 00) { 
+    echo '
+Checando e realizando atualizando do módulo
+';
+   include dirname(__FILE__) . DIRECTORY_SEPARATOR . 'update.php';
+}else if(date('H') == 18 && date('i') == 00) { 
+    echo '
+Checando e realizando atualizando do módulo
+';
+   include dirname(__FILE__) . DIRECTORY_SEPARATOR . 'update.php';
+}else if(date('H') == 19 && date('i') == 00) { 
+    echo '
+Checando e realizando atualizando do módulo
+';
+   include dirname(__FILE__) . DIRECTORY_SEPARATOR . 'update.php';
+}
+else if(date('H') == 20 && date('i') == 00) { 
     echo '
 Checando e realizando atualizando do módulo
 ';
