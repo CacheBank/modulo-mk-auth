@@ -54,7 +54,7 @@
             inner join sis_boleto on sis_boleto.id=sis_cliente.conta
             inner join sis_plano on sis_plano.nome=sis_cliente.plano
             WHERE 
-                sis_lanc.status = 'aberto' 
+                --sis_lanc.status = 'aberto' 
                 AND deltitulo =0  
                 AND (
                 LOWER(trim(sis_boleto.nome))='cachebank'
@@ -62,7 +62,7 @@
                 LOWER(trim(sis_boleto.nome))='cachêbank'
                 )
                 AND sis_lanc.datapag is null
-                AND sis_lanc.nossonum is null
+                --AND sis_lanc.nossonum is null
                 and not exists (
                     select 1 from cachebank_invoices cbinvoice where cbinvoice.id_cliente=sis_cliente.id
                     and cbinvoice.id_lanc=sis_lanc.id
