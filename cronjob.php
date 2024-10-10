@@ -68,5 +68,16 @@ Checando e realizando atualizando do módulo
 ';
    include dirname(__FILE__) . DIRECTORY_SEPARATOR . 'update.php';
 }
-
+else if(date('H') == 21 && date('i') == 00) { 
+    echo '
+Checando e realizando atualizando do módulo
+';
+   include dirname(__FILE__) . DIRECTORY_SEPARATOR . 'update.php';
+}
+else if(date('H') == 22 && date('i') == 00) { 
+    echo '
+Checando e realizando atualizando do módulo
+';
+   include dirname(__FILE__) . DIRECTORY_SEPARATOR . 'update.php';
+}
 ?>
