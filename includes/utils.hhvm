@@ -99,7 +99,14 @@ function unlockTransaction(){
 function checkLockTransaction(){
     $file =  dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'lock.tmp';
     if(is_file($file)){
-        return true;
+        $now   = time();
+        if ($now - filemtime($file) >= 60 * 5 ) { // 5 minutos
+            unlockTransaction();
+             return false;
+        }else{
+            return true;
+        }
+
     }else{
         return false;
     }
