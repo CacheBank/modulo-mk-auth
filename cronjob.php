@@ -1,11 +1,7 @@
 <?php
-require '/opt/mk-auth/admin/addons/cachebank/includes/gerar_boleto.php';
-
-$sincPix='
-        php /opt/mk-auth/admin/addons/cachebank/includes/atualizarcobrancas.php;
-        php /opt/mk-auth/admin/addons/cachebank/includes/reparar-conflitos.php;
-     ';
-    shell_exec($sincPix);
+shell_exec(' php /opt/mk-auth/admin/addons/cachebank/includes/gerar_boleto.php;');
+shell_exec(' php /opt/mk-auth/admin/addons/cachebank/includes/atualizarcobrancas.php;');
+shell_exec(' php /opt/mk-auth/admin/addons/cachebank/includes/reparar-conflitos.php;');
 
 
 $logFile='/tmp/cachebank_log.txt';
