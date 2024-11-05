@@ -54,7 +54,7 @@
             inner join sis_boleto on sis_boleto.id=sis_cliente.conta
             inner join sis_plano on sis_plano.nome=sis_cliente.plano
             WHERE 
-                AND deltitulo =0  
+                deltitulo =0  
                 AND (
                 LOWER(trim(sis_boleto.nome))='cachebank'
                 or 
