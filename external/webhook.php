@@ -17,7 +17,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = json_decode($input, true);
 
 
-
         // Verificar se os dados são válidos
         $notification_id = isset($data['notification_id']) ? $data['notification_id'] : '';
         $idtransaction = isset($data['idtransaction']) ? $data['idtransaction'] : '';
