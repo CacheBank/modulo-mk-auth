@@ -21,59 +21,10 @@ Arquivo de Log menor que 35MB
 ';
 }
 
-if(date('H') == 23 && date('i') == 30) { 
+if(date('i') == 30) { 
      echo '
 Checando e realizando atualizando do módulo
 ';
     include dirname(__FILE__) . DIRECTORY_SEPARATOR . 'update.php';
-}else if(date('H') == 12 && date('i') == 00) { 
-    echo '
-Checando e realizando atualizando do módulo
-';
-   include dirname(__FILE__) . DIRECTORY_SEPARATOR . 'update.php';
-}else if(date('H') == 14 && date('i') == 00) { 
-    echo '
-Checando e realizando atualizando do módulo
-';
-   include dirname(__FILE__) . DIRECTORY_SEPARATOR . 'update.php';
-}else if(date('H') == 16 && date('i') == 00) { 
-    echo '
-Checando e realizando atualizando do módulo
-';
-   include dirname(__FILE__) . DIRECTORY_SEPARATOR . 'update.php';
-}
-else if(date('H') == 17 && date('i') == 00) { 
-    echo '
-Checando e realizando atualizando do módulo
-';
-   include dirname(__FILE__) . DIRECTORY_SEPARATOR . 'update.php';
-}else if(date('H') == 18 && date('i') == 00) { 
-    echo '
-Checando e realizando atualizando do módulo
-';
-   include dirname(__FILE__) . DIRECTORY_SEPARATOR . 'update.php';
-}else if(date('H') == 19 && date('i') == 00) { 
-    echo '
-Checando e realizando atualizando do módulo
-';
-   include dirname(__FILE__) . DIRECTORY_SEPARATOR . 'update.php';
-}
-else if(date('H') == 20 && date('i') == 00) { 
-    echo '
-Checando e realizando atualizando do módulo
-';
-   include dirname(__FILE__) . DIRECTORY_SEPARATOR . 'update.php';
-}
-else if(date('H') == 21 && date('i') == 00) { 
-    echo '
-Checando e realizando atualizando do módulo
-';
-   include dirname(__FILE__) . DIRECTORY_SEPARATOR . 'update.php';
-}
-else if(date('H') == 22 && date('i') == 00) { 
-    echo '
-Checando e realizando atualizando do módulo
-';
-   include dirname(__FILE__) . DIRECTORY_SEPARATOR . 'update.php';
 }
 ?>

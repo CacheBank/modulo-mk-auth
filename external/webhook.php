@@ -60,9 +60,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
      
 
         // Comparar txid com pix_info e atualizar sis_lanc
-                $query = "SELECT cinvoices.idtransaction as idtransaction, cinvoices.id_cliente as id_cliente, cinvoices.id_lanc as id_lanc 
+                $query = "SELECT cinvoices.idtransaction as idtransaction, cinvoices.id_cliente as id_cliente, cinvoices.id_lanc as id_lanc, sis_cliente.login as login_cliente 
                           FROM cachebank_invoices cinvoices
                           JOIN cachebank_webhook_logs wslog ON wslog.idtransaction = cinvoices.idtransaction
+                          JOIN sis_cliente sis_cliente ON sis_cliente.id = cinvoices.id_cliente 
                           WHERE wslog.id = :wslogId order by wslog.notification_date";
                 $stmt = $pdo->prepare($query);
                 if (!$stmt) {
@@ -75,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $idtransaction=$resDb["idtransaction"];
                 $id_cliente=$resDb["id_cliente"];
                 $id_lanc=$resDb["id_lanc"];
-                   
+                $login_cliente=$resDb["login_cliente"];
 
 
         log_message("Consultando dados externos da transação WebHookId: " . $last_id);
@@ -106,7 +107,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bindParam(":nosso_numero", $paymentRes["boleto"]["nossonumero"], PDO::PARAM_STR);
         $stmt->bindParam(":codigo_barra", $paymentRes["boleto"]["codigobarra"], PDO::PARAM_STR);
 
-
         $stmt->bindParam(":status", $statusName, PDO::PARAM_STR);
 
         $stmt->bindParam(":txid", $paymentRes["pix"]["txid"], PDO::PARAM_STR);
@@ -128,15 +128,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         log_message("Aualizando lançamento " . $id_lanc);
 
         // Atualizar sis_lanc
-        $updateQuery = "UPDATE sis_lanc SET formapag = 'dinheiro', status = :status, num_recibos = 1, datapag = :datapag, coletor = 'notificacao', valorpag = :valorpag WHERE id = :sis_lanc_id";
+        $updateQuery = "UPDATE sis_lanc SET formapag = 'dinheiro', status = :status, num_recibos = 1, datapag = :datapag, coletor = 'notificacao', valorpag = :valorpag WHERE id = :sis_lanc_id and login= :login";
         $stmt = $pdo->prepare($updateQuery);
         if (!$stmt) {
              throw new Exception("Erro ao preparar declaração SQL para atualizar sis_lanc: " . $pdo->error);
         }
+        $datapagamento=$paymentRes["datapagamento"];
         $stmt->bindParam(":status", $statusName, PDO::PARAM_STR);
-        $stmt->bindParam(":datapag", $paymentRes["datapagamento"],  PDO::PARAM_STR);
+        $stmt->bindParam(":datapag", $datapagamento,  PDO::PARAM_STR);
         $stmt->bindParam(":valorpag", $amountPaid,  PDO::PARAM_STR);
         $stmt->bindParam(":sis_lanc_id", $id_lanc,  PDO::PARAM_INT);
+        $stmt->bindParam(":login", $login_cliente,  PDO::PARAM_STR);
 
         if (!$stmt->execute()) {
             throw new Exception("Erro ao executar declaração SQL para atualizar sis_lanc: " . $stmt->error);
