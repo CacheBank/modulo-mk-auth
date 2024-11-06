@@ -54,11 +54,11 @@ function mountParamsCreatePayment($pdo,$params){
 
     // Definir Juros
     if(isset($params["lanc_multa"]) or isset($params["lanc_juros"])){
-        if($params["lanc_multa"]==true or $params["lanc_juros"]==true){
+        if($params["lanc_multa"]>0 && $params["lanc_juros"]>0){
             $payload['aplicarmulta'] = true;
             $payload['multa_juros'] = $params["lanc_juros"];
             $payload['multa_valor'] = $params["lanc_multa"];
-        }else if($params["lanc_multa"]<=0 || $params["lanc_juros"]<=0){
+        }else{
             $payload['aplicarmulta'] = false;
         }
     }else{
@@ -67,7 +67,7 @@ function mountParamsCreatePayment($pdo,$params){
 
     // Definição de Desconto
     if( isset($params["lanc_desconto"]) ){
-        if($params["lanc_desconto"]==true){
+        if($params["lanc_desconto"]>0){
             $payload['aplicardesconto'] = true;
             $payload['desconto_limite'] = 0;
 
@@ -76,7 +76,7 @@ function mountParamsCreatePayment($pdo,$params){
             }else{
                 $payload['desconto_valorfixo'] = $params["lanc_desconto"];
             }
-        }else if($params["lanc_desconto"]<=0){
+        } else{
             $payload['aplicardesconto'] = false;
         }
     }else{
