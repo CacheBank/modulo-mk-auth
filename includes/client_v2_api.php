@@ -58,6 +58,8 @@ function mountParamsCreatePayment($pdo,$params){
             $payload['aplicarmulta'] = true;
             $payload['multa_juros'] = $params["lanc_juros"];
             $payload['multa_valor'] = $params["lanc_multa"];
+        }else if($params["lanc_multa"]<=0 || $params["lanc_juros"]<=0){
+            $payload['aplicarmulta'] = false;
         }
     }else{
         $payload['aplicarmulta'] = false;
@@ -74,6 +76,8 @@ function mountParamsCreatePayment($pdo,$params){
             }else{
                 $payload['desconto_valorfixo'] = $params["lanc_desconto"];
             }
+        }else if($params["lanc_desconto"]<=0){
+            $payload['aplicardesconto'] = false;
         }
     }else{
         $payload['aplicardesconto'] = false;

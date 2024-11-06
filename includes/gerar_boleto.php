@@ -48,7 +48,6 @@
             sis_cliente.complemento_res as cliente_endereco_complemento,
             sis_cliente.numero_res as cliente_endereco_numero,
             sis_boleto.nome as nome_conta
-
             FROM sis_lanc 
             inner join sis_cliente on sis_cliente.login=sis_lanc.login
             inner join sis_boleto on sis_boleto.id=sis_cliente.conta
