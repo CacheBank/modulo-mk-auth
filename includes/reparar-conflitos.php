@@ -6,7 +6,7 @@
     $config = getConfig($pdo);
 
     syncBill($pdo, $conn);
-    syncCaixa($pdo, $conn);
+    syncCaixa($pdo, $conn, true);
 
     function syncCaixa($pdo, $conn, $force=false){
         if($force){
