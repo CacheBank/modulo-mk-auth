@@ -134,8 +134,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->execute();
 
            // Atualizar sis_lanc
-           $aberto_result = $conn->query($aberto_sql);
            $aberto_sql = "SELECT * from sis_lanc WHERE nossonum  = '".$paymentRes["boleto"]["nossonumero"]."'";
+           $aberto_result = $conn->query($aberto_sql);
            while ($fatura = $aberto_result->fetch_assoc()) {
                print_r($fatura);
                echo '
