@@ -261,11 +261,6 @@
             $statusName=getStatusPaymentName($paymentRes["status"]);
             $amount_fees=$paymentRes["custo"];
 
-            echo '
-            lin'.$paymentRes["boleto"]["linhadigitavel"];
-
-            print_r($paymentRes);
-
             log_message("Atribuindo valores a transacao " . $idtransaction);
 
             // Atualizar invoiceLogs
