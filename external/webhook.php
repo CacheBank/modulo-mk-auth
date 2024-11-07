@@ -126,7 +126,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             throw new Exception("Erro ao executar declaração SQL para atualizar cachebank_invoices: " . $stmt->error);
         }
 
-        log_message("Aualizando lançamento " . $id_lanc);
+        log_message("Aualizando lançamento usando nosso numero " . $paymentRes["boleto"]["nossonumero"]);
 
         $stmt=null;
         // Atualizar sis_lanc
