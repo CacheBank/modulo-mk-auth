@@ -132,8 +132,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt=null;
         // Atualizar sis_lanc
         $updateQuery = "UPDATE sis_lanc SET formapag = 'dinheiro', status = :status, num_recibos = 1, datapag = :datapag, coletor = 'notificacao', valorpag = :valorpag WHERE id = :sis_lanc_id ";
+        echo '
+        updateQuery'.$updateQuery;
         $stmt = $pdo->prepare($updateQuery);
-        var_dump($id_lanc);
         if (!$stmt) {
              throw new Exception("Erro ao preparar declaração SQL para atualizar sis_lanc: " . $pdo->error);
         }
