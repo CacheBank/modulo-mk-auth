@@ -138,6 +138,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $datapagamento=$paymentRes["datapagamento"];
             log_message("Aualizando2 lançamento usando nosso numero " . $paymentRes["boleto"]["nossonumero"]);
 
+              // Atualizar sis_lanc
+            $aberto_sql = "SELECT * from sis_lanc WHERE nossonum  = '".$paymentRes["boleto"]["nossonumero"]."' and status;";
+            
+            $aberto_result = $conn->query($aberto_sql);
+
+            while ($fatura = $aberto_result->fetch_assoc()) {
+                print_r($fatura);
+                echo '
+                --------------------';
+            }
+
+        
+            
             $updateQuery = "UPDATE sis_lanc SET formapag = 'dinheiro', status = '".$statusName."', num_recibos = 1, datapag = '".$datapagamento."', coletor = 'notificacao', valorpag = '".$amountPaid."', tarifa_paga = '".$amount_fees."' WHERE nossonum  = '".$paymentRes["boleto"]["nossonumero"]."';";
             $stmt = $conn->query($updateQuery);
            
