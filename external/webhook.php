@@ -144,14 +144,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
         if(!$stmt->fetchColumn()){
             $stmt=null;
-            $datapagamento=$paymentRes["datapagamento"];
+            $datapagamento=date("Y-m-d H:i:s", $paymentRes["datapagamento"]); 
             log_message("Aualizando2 lançamento usando nosso numero " . $paymentRes["boleto"]["nossonumero"]);
 
            
 
         
             
-            $updateQuery = "UPDATE sis_lanc SET formapag = 'dinheiro', status = '".$statusName."', num_recibos = 1, datapag = '".$datapagamento."', coletor = 'notificacao', valorpag = '".$amountPaid."', tarifa_paga = '".$amount_fees."' WHERE nossonum  = ".$paymentRes["boleto"]["nossonumero"]."";
+            $updateQuery = "UPDATE sis_lanc SET formapag = 'dinheiro', status = '".$statusName."', num_recibos = 1, datapag = '".$datapagamento."', coletor = 'notificacao', valorpag = '".$amountPaid."' ";
+            if($amount_fees){
+                $updateQuery = $updateQuery.", tarifa_paga = '".$amount_fees."' ";
+            }
+            $updateQuery = $updateQuery. " WHERE nossonum  = ".$paymentRes["boleto"]["nossonumero"]."";
             echo '
             query'.$updateQuery.'
             ';
