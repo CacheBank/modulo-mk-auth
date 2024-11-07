@@ -22,8 +22,7 @@
             sis_lanc.deltitulo
         FROM `cachebank_invoices` ch 
         inner join sis_lanc sis_lanc on sis_lanc.id=ch.id_lanc
-        where ch.updated_at>=SUBDATE(CURRENT_DATE, INTERVAL 1 Hour);
-    "; 
+        where ch.updated_at>=SUBDATE(CURRENT_DATE, INTERVAL 1 Hour)"; 
     $aberto_result = $conn->query($aberto_sql);
 
     while ($fatura = $aberto_result->fetch_assoc()) {
