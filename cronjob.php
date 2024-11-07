@@ -22,7 +22,7 @@ Arquivo de Log menor que 35MB
 ';
 }
 
-if(date('i') == 30 || date('i') == 5 || date('i') == 0) { 
+if(in_array(date('i'), [0,5,15,30,45])) { 
      echo '
 Checando e realizando atualizando do módulo
 ';
