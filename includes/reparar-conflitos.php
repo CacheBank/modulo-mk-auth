@@ -280,10 +280,8 @@
             if (!$stmt) {
                 throw new Exception("Erro ao preparar declaração SQL para atualizar sis_lanc: " . $pdo->error);
             }
-            $linhaDigitavel=$paymentRes["boleto"]["linhadigitavel"];
-            echo '
-            linhaDigitavel'. $linhaDigitavel;
-            $stmt->bindParam(":linha_digitavel", $linhaDigitavel, PDO::PARAM_STR);
+        
+            $stmt->bindParam(":linha_digitavel", $paymentRes["boleto"]["linhadigitavel"], PDO::PARAM_STR);
             $stmt->bindParam(":nosso_numero", $paymentRes["boleto"]["nossonumero"], PDO::PARAM_STR);
             $stmt->bindParam(":codigo_barra", $paymentRes["boleto"]["codigobarra"], PDO::PARAM_STR);
 
