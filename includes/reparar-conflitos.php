@@ -255,10 +255,14 @@
         while ($fatura = $aberto_result->fetch_assoc()) {
 
             $idtransaction=$fatura["idtransaction"];
+
             $paymentRes=obterTransacao($pdo,  $idtransaction);
             $amountPaid=$paymentRes["status"]===7?$paymentRes["valortotal"]:$paymentRes["valorpago"];
             $statusName=getStatusPaymentName($paymentRes["status"]);
             $amount_fees=$paymentRes["custo"];
+
+            echo '
+            lin'.$paymentRes["boleto"]["linhadigitavel"];
 
             print_r($paymentRes);
 
