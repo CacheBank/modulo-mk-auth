@@ -126,16 +126,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             throw new Exception("Erro ao executar declaração SQL para atualizar cachebank_invoices: " . $stmt->error);
         }
 
-        log_message("Iniciando atualização de lançamento");
+        log_message("Iniciando1 atualização de lançamento");
 
          // Atualizar sis_lanc
-        $aberto_sql = "SELECT * from sis_lanc WHERE nossonum  = ".$paymentRes["boleto"]["nossonumero"]." and status='pago';";
+        $aberto_sql = "SELECT * from sis_lanc WHERE nossonum  = '".$paymentRes["boleto"]["nossonumero"]."' and status='pago'";
         $stmt = $pdo->prepare($aberto_sql);
         $stmt->execute();
 
            // Atualizar sis_lanc
            $aberto_result = $conn->query($aberto_sql);
-           $aberto_sql = "SELECT * from sis_lanc WHERE nossonum  = ".$paymentRes["boleto"]["nossonumero"]." ;";
+           $aberto_sql = "SELECT * from sis_lanc WHERE nossonum  = '".$paymentRes["boleto"]["nossonumero"]."'";
            while ($fatura = $aberto_result->fetch_assoc()) {
                print_r($fatura);
                echo '
