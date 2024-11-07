@@ -128,36 +128,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         log_message("Aualizando lançamento usando nosso numero " . $paymentRes["boleto"]["nossonumero"]);
 
+         // Atualizar sis_lanc
+        $aberto_sql = "SELECT * from sis_lanc WHERE nossonum  = '".$paymentRes["boleto"]["nossonumero"]."' and status!='pago';";
+        $stmt = $pdo->prepare($aberto_sql);
+        $stmt->execute();
+    
+        if(!$stmt->fetchColumn()){
+            $stmt=null;
+       
+            $updateQuery = "UPDATE sis_lanc SET formapag = 'dinheiro', status = :status, num_recibos = 1, datapag = :datapag, coletor = 'notificacao', valorpag = :valorpag, tarifa_paga = :tarifa_paga WHERE nossonum  = '".$paymentRes["boleto"]["nossonumero"]."';";
+            $stmt = $pdo->prepare($updateQuery);
+            if (!$stmt) {
+                 throw new Exception("Erro ao declaração SQL para atualizar sis_lanc: " . $conn->error);
+            }
+    
+            $datapagamento=$paymentRes["datapagamento"];
+            $stmt->bindParam(":status", $statusName, PDO::PARAM_STR);
+            $stmt->bindParam(":datapag", $datapagamento,  PDO::PARAM_STR);
+            $stmt->bindParam(":valorpag", $amountPaid,  PDO::PARAM_STR);
+            $stmt->bindParam(":tarifa_paga", $amount_fees,  PDO::PARAM_STR);
+    
+            if (!$stmt->execute()) {
+                throw new Exception("Erro ao executar declaração SQL para atualizar sis_lanc: " . $stmt->errorInfo()[2]);
+            }
+        }
 
-        //Gerar Log
-        $aberto_sql = "SELECT * from sis_lanc WHERE nossonum  = '".$paymentRes["boleto"]["nossonumero"]."';";
+
         
-        $aberto_result = $conn->query($aberto_sql);
-
-        while ($fatura = $aberto_result->fetch_assoc()) {
-            print_r($fatura);
-            echo '
-            --------------------';
-        }
-
-
-        $stmt=null;
-        // Atualizar sis_lanc
-        $updateQuery = "UPDATE sis_lanc SET formapag = 'dinheiro', status = :status, num_recibos = 1, datapag = :datapag, coletor = 'notificacao', valorpag = :valorpag, tarifa_paga = :tarifa_paga WHERE nossonum  = '".$paymentRes["boleto"]["nossonumero"]."';";
-        $stmt = $pdo->prepare($updateQuery);
-        if (!$stmt) {
-             throw new Exception("Erro ao declaração SQL para atualizar sis_lanc: " . $conn->error);
-        }
-
-        $datapagamento=$paymentRes["datapagamento"];
-        $stmt->bindParam(":status", $statusName, PDO::PARAM_STR);
-        $stmt->bindParam(":datapag", $datapagamento,  PDO::PARAM_STR);
-        $stmt->bindParam(":valorpag", $amountPaid,  PDO::PARAM_STR);
-        $stmt->bindParam(":tarifa_paga", $amount_fees,  PDO::PARAM_STR);
-
-        if (!$stmt->execute()) {
-            throw new Exception("Erro ao executar declaração SQL para atualizar sis_lanc: " . $stmt->errorInfo()[2]);
-        }
 
         // Fim lançamento Financeiro
 
