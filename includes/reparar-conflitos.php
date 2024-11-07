@@ -261,6 +261,7 @@
             $amount_fees=$paymentRes["custo"];
 
             log_message("Atribuindo valores a transacao " . $idtransaction);
+            log_message("amount_fees ". $amount_fees);
 
             // Atualizar invoiceLogs
             $updateQuery = "UPDATE cachebank_invoices 
