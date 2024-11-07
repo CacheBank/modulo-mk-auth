@@ -283,7 +283,7 @@
             if (!$stmt) {
                 throw new Exception("Erro ao preparar declaração SQL para atualizar sis_lanc: " . $pdo->error);
             }
-            print_r($paymentRes["boleto"]);
+            print_r($paymentRes);
             $linhaDigitavel=$paymentRes["boleto"]["linhadigitavel"];
             echo '
             linhaDigitavel'. $linhaDigitavel;
