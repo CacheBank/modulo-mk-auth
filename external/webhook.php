@@ -128,6 +128,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         log_message("Aualizando lançamento usando nosso numero " . $paymentRes["boleto"]["nossonumero"]);
 
+
+        //Gerar Log
+        $aberto_sql = "SELECT * from sis_lanc WHERE nossonum  = :nossonumero;";
+        $stmt = $pdo->prepare($aberto_sql);
+        if (!$stmt) {
+             throw new Exception("Erro ao declaração SQL para atualizar sis_lanc: " . $conn->error);
+        }
+        $stmt->bindParam(":nossonumero", $paymentRes["boleto"]["nossonumero"],  PDO::PARAM_STR);
+        $aberto_result = $conn->query($aberto_sql);
+
+        while ($fatura = $aberto_result->fetch_assoc()) {
+            print_r($fatura);
+        }
+
+
         $stmt=null;
         // Atualizar sis_lanc
         $updateQuery = "UPDATE sis_lanc SET formapag = 'dinheiro', status = :status, num_recibos = 1, datapag = :datapag, coletor = 'notificacao', valorpag = :valorpag, tarifa_paga = :tarifa_paga WHERE nossonum  = :nossonumero;";
@@ -144,7 +159,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bindParam(":nossonumero", $paymentRes["boleto"]["nossonumero"],  PDO::PARAM_STR);
 
         if (!$stmt->execute()) {
-            throw new Exception("Erro ao executar declaração SQL para atualizar sis_lanc: " . $conn->error);
+            throw new Exception("Erro ao executar declaração SQL para atualizar sis_lanc: " . $stmt->errorInfo()[2]);
         }
 
         // Fim lançamento Financeiro
