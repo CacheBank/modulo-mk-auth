@@ -151,7 +151,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
            
 
-            $updateQuery = "UPDATE sis_lanc SET formapag = 'dinheiro', status = '".$statusName."', num_recibos = 1, datapag = DATE_FORMAT('".$datapagamento."', '%Y-%m-%d %H:%i:%s'), coletor = 'notificacao', valorpag = '".$amountPaid."' ";
+            $updateQuery = "UPDATE sis_lanc SET formapag = 'dinheiro', status = '".$statusName."', num_recibos = 1, datapag = DATE_FORMAT('".$dataFormatada."', '%Y-%m-%d %H:%i:%s'), coletor = 'notificacao', valorpag = '".$amountPaid."' ";
             if($amount_fees){
                 $updateQuery = $updateQuery.", tarifa_paga = '".$amount_fees."' ";
             }
