@@ -1,5 +1,6 @@
 <?php
-echo shell_exec('php /opt/mk-auth/admin/addons/cachebank/includes/gerar_boleto.php;');
+echo shell_exec('php /opt/mk-auth/admin/addons/cachebank/includes/gerar_boleto.php;
+');
 echo shell_exec('php /opt/mk-auth/admin/addons/cachebank/includes/atualizarcobrancas.php;');
 echo shell_exec('php /opt/mk-auth/admin/addons/cachebank/includes/reparar-conflitos.php;');
 
