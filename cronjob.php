@@ -1,8 +1,8 @@
 <?php
-echo shell_exec('php /opt/mk-auth/admin/addons/cachebank/includes/gerar_boleto.php;
+echo exec('php /opt/mk-auth/admin/addons/cachebank/includes/gerar_boleto.php;
 ');
-echo shell_exec('php /opt/mk-auth/admin/addons/cachebank/includes/atualizarcobrancas.php;');
-echo shell_exec('php /opt/mk-auth/admin/addons/cachebank/includes/reparar-conflitos.php;');
+echo exec('php /opt/mk-auth/admin/addons/cachebank/includes/atualizarcobrancas.php;');
+echo exec('php /opt/mk-auth/admin/addons/cachebank/includes/reparar-conflitos.php;');
 
 
 $logFile='/tmp/cachebank_log.txt';
