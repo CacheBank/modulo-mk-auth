@@ -19,7 +19,7 @@ function client($pdo, $params, $methodUrl, $method){
         curl_setopt($ch,CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     }else if($method=='GET'){
-        curl_setopt($ch,CURLOPT_CUSTOMREQUEST, value: 'GET');
+        curl_setopt($ch,CURLOPT_CUSTOMREQUEST,  'GET');
     }
 
     
