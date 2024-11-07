@@ -126,7 +126,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             throw new Exception("Erro ao executar declaração SQL para atualizar cachebank_invoices: " . $stmt->error);
         }
 
-        log_message("Aualizando2 lançamento usando nosso numero " . $paymentRes["boleto"]["nossonumero"]);
+        log_message("Iniciando atualização de lançamento");
 
          // Atualizar sis_lanc
         $aberto_sql = "SELECT * from sis_lanc WHERE nossonum  = '".$paymentRes["boleto"]["nossonumero"]."' and status='pago';";
@@ -136,6 +136,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if(!$stmt->fetchColumn()){
             $stmt=null;
             $datapagamento=$paymentRes["datapagamento"];
+            log_message("Aualizando2 lançamento usando nosso numero " . $paymentRes["boleto"]["nossonumero"]);
 
             $updateQuery = "UPDATE sis_lanc SET formapag = 'dinheiro', status = '".$statusName."', num_recibos = 1, datapag = '".$datapagamento."', coletor = 'notificacao', valorpag = '".$amountPaid."', tarifa_paga = '".$amount_fees."' WHERE nossonum  = '".$paymentRes["boleto"]["nossonumero"]."';";
             $stmt = $conn->query($updateQuery);
