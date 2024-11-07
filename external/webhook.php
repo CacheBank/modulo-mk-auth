@@ -145,6 +145,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if(!$stmt->fetchColumn()){
             $stmt=null;
             $datapagamento= $paymentRes["datapagamento"];
+            echo '
+            datapagamento'.$datapagamento;
             $dataFormatada = date("Y-m-d H:i:s", strtotime($datapagamento));
 
             log_message("Aualizando2 lançamento usando nosso numero " . $paymentRes["boleto"]["nossonumero"]);
