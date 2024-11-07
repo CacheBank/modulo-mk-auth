@@ -15,7 +15,7 @@ function client($pdo, $params, $methodUrl, $method){
 
     //set the url, number of POST vars, POST data
     curl_setopt($ch,CURLOPT_URL, $url);
-    if($method='POST'){
+    if($method=='POST'){
         curl_setopt($ch,CURLOPT_POST, value: 1);
         curl_setopt($ch,CURLOPT_POSTFIELDS, $fields_string);
     }
