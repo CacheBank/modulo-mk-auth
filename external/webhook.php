@@ -130,12 +130,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
         //Gerar Log
-        $aberto_sql = "SELECT * from sis_lanc WHERE nossonum  = :nossonumero;";
-        $stmt = $pdo->prepare($aberto_sql);
-        if (!$stmt) {
-             throw new Exception("Erro ao declaração SQL para atualizar sis_lanc: " . $conn->error);
-        }
-        $stmt->bindParam(":nossonumero", $paymentRes["boleto"]["nossonumero"],  PDO::PARAM_STR);
+        $aberto_sql = "SELECT * from sis_lanc WHERE nossonum  = '".$paymentRes["boleto"]["nossonumero"]."';";
+        
         $aberto_result = $conn->query($aberto_sql);
 
         while ($fatura = $aberto_result->fetch_assoc()) {
