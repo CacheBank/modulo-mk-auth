@@ -260,8 +260,9 @@
             $statusName=getStatusPaymentName($paymentRes["status"]);
             $amount_fees=$paymentRes["custo"];
 
+            print_r($paymentRes);
+
             log_message("Atribuindo valores a transacao " . $idtransaction);
-            log_message("amount_fees ". $amount_fees);
 
             // Atualizar invoiceLogs
             $updateQuery = "UPDATE cachebank_invoices 
