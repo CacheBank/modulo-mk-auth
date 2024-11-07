@@ -10,8 +10,6 @@ function client($pdo, $params, $methodUrl, $method){
     $ch = curl_init();
 
     $url='https://api.cachebank.com.br/api/v2/'.$methodUrl;
-    echo "
-    url ".$url;
 
     //set the url, number of POST vars, POST data
     curl_setopt($ch,CURLOPT_URL, $url);
