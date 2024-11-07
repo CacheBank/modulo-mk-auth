@@ -185,19 +185,42 @@
             ch.amount_paid,
             ch.payment_date,
             sis_lanc.deltitulo,
-            sis_lanc.login
+            sis_lanc.login,
+               ch.linha_digitavel ,sis_lanc.linhadig
         FROM `cachebank_invoices` ch 
         inner join sis_lanc sis_lanc on sis_lanc.id=ch.id_lanc
-        where 
-        ch.linha_digitavel <> sis_lanc.linhadig
-        OR
-        ch.nosso_numero <> sis_lanc.nossonum
-        or 
-        ch.status <> sis_lanc.status
-        or
-        ch.payment_date <> sis_lanc.datapag
-        or gerourem <> 1;
-        "; 
+         where 
+        (
+            ch.linha_digitavel is not null
+            and (sis_lanc.linhadig is null or sis_lanc.linhadig <>  ch.linha_digitavel)
+         )
+         OR
+         (
+            ch.nosso_numero is not null
+            and (sis_lanc.nossonum is null or sis_lanc.nossonum <>  ch.nosso_numero)
+         )
+         
+         OR
+         (
+            ch.status is not null
+            and (sis_lanc.status is null or sis_lanc.status <>  ch.status)
+         )
+         OR
+         (
+            ch.status is not null
+            and (sis_lanc.status is null or sis_lanc.status <>  ch.status)
+         )
+         
+         OR
+         (
+            ch.payment_date is not null
+            and (sis_lanc.datapag is null or sis_lanc.datapag <>  ch.payment_date)
+         )
+         
+         OR
+         (
+            sis_lanc.gerourem is null or sis_lanc.gerourem <>  1
+         );"; 
         $aberto_result = $conn->query($aberto_sql);
 
         while ($fatura = $aberto_result->fetch_assoc()) {
