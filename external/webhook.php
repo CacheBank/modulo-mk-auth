@@ -120,7 +120,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bindParam(":amount_fees", $amount_fees, PDO::PARAM_STR);
      
 
-
         $stmt->bindParam(":id_lanc", $id_lanc, PDO::PARAM_INT);
         
         if (!$stmt->execute()) {
@@ -131,9 +130,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $stmt=null;
         // Atualizar sis_lanc
-        $updateQuery = "UPDATE sis_lanc SET formapag = 'dinheiro', status = :status, num_recibos = 1, datapag = :datapag, coletor = 'notificacao', valorpag = :valorpag WHERE id = :sis_lanc_id ";
-        echo '
-        updateQuery'.$updateQuery;
+        $updateQuery = "UPDATE sis_lanc SET formapag = 'dinheiro', status = :status, num_recibos = 1, datapag = :datapag, coletor = 'notificacao', valorpag = :valorpag WHERE id = :id_lanc;";
+      
         $stmt = $pdo->prepare($updateQuery);
         if (!$stmt) {
              throw new Exception("Erro ao declaração SQL para atualizar sis_lanc: " . $pdo->error);
@@ -142,7 +140,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bindParam(":status", $statusName, PDO::PARAM_STR);
         $stmt->bindParam(":datapag", $datapagamento,  PDO::PARAM_STR);
         $stmt->bindParam(":valorpag", $amountPaid,  PDO::PARAM_STR);
-        $stmt->bindParam(":sis_lanc_id", $id_lanc,  PDO::PARAM_INT);
+        $stmt->bindParam(":id_lanc", $id_lanc,  PDO::PARAM_INT);
 
         if (!$stmt->execute()) {
             throw new Exception("Erro ao executar declaração SQL para atualizar sis_lanc: " . $stmt->error);
