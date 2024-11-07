@@ -134,7 +134,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       
         $stmt = $pdo->prepare($updateQuery);
         if (!$stmt) {
-             throw new Exception("Erro ao declaração SQL para atualizar sis_lanc: " . $pdo->error);
+             throw new Exception("Erro ao declaração SQL para atualizar sis_lanc: " . $conn->error);
         }
         $datapagamento=$paymentRes["datapagamento"];
         $stmt->bindParam(":status", $statusName, PDO::PARAM_STR);
@@ -143,7 +143,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bindParam(":id_lanc", $id_lanc,  PDO::PARAM_INT);
 
         if (!$stmt->execute()) {
-            throw new Exception("Erro ao executar declaração SQL para atualizar sis_lanc: " . $pdo->error);
+            throw new Exception("Erro ao executar declaração SQL para atualizar sis_lanc: " . $conn->error);
         }
 
         // Fim lançamento Financeiro
