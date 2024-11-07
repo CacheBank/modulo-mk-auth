@@ -124,7 +124,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bindParam(":id_lanc", $id_lanc, PDO::PARAM_INT);
         
         if (!$stmt->execute()) {
-            throw new Exception("Erro ao executar declaração SQL para atualizar sis_lanc: " . $stmt->error);
+            throw new Exception("Erro ao executar declaração SQL para atualizar cachebank_invoices: " . $stmt->error);
         }
 
         log_message("Aualizando lançamento " . $id_lanc);
