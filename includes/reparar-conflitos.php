@@ -253,11 +253,11 @@
         $aberto_result = $conn->query($aberto_sql);
     
         while ($fatura = $aberto_result->fetch_assoc()) {
-            print_r($fatura);
 
             $idtransaction=$fatura["idtransaction"];
                 
             $paymentRes=obterTransacao($pdo,  $idtransaction);
+            
             print_r($paymentRes);
             $amountPaid=$paymentRes["status"]===7?$paymentRes["valortotal"]:$paymentRes["valorpago"];
             $statusName=getStatusPaymentName($paymentRes["status"]);

@@ -197,10 +197,8 @@ function obterDadosWebHookBoleto($pdo,$notification_id, $idtransaction){
 }
 
 function obterTransacao($pdo,$idtransaction){
-    $payload=[
-        'id' => $idtransaction
-    ];
-    $client=client($pdo,$payload, 'transacao/exibir/'.$idtransaction,'GET');
+    
+    $client=client($pdo,[], 'transacao/exibir/'.$idtransaction,'GET');
 
     return $client;
 }
