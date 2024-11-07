@@ -111,7 +111,7 @@
             inner join sis_lanc sis_lanc on sis_lanc.id=ch.id_lanc
             JOIN sis_cliente sis_cliente ON sis_cliente.login = sis_lanc.login
             where not exists (
-                select 1 from sis_caixa sis_caixa WHERE sis_caixa.historico = concat('Recebimento do titulo ',sis_lanc.id,' / ',sis_lanc.login)
+                select 1 from sis_caixa sis_caixa WHERE sis_caixa.historico = concat('Tarifa do titulo ',sis_lanc.id,' / ',sis_lanc.login)
             )
             and ch.amount_paid>0
             "; 
@@ -138,7 +138,7 @@
             where 
                 ch.updated_at>=SUBDATE(CURRENT_DATE, INTERVAL 1 Hour)
                 and not exists (
-                    select 1 from sis_caixa sis_caixa WHERE sis_caixa.historico = concat('Recebimento do titulo ',sis_lanc.id,' / ',sis_lanc.login)
+                    select 1 from sis_caixa sis_caixa WHERE sis_caixa.historico = concat('Tarifa do titulo ',sis_lanc.id,' / ',sis_lanc.login)
                 )
                 and ch.amount_paid>0"; 
         }
