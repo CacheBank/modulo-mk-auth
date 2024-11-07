@@ -9,8 +9,12 @@ function client($pdo, $params, $methodUrl, $method){
     //open connection
     $ch = curl_init();
 
+    $url='https://api.cachebank.com.br/api/v2/'.$methodUrl;
+    echo "
+    url ".$url;
+
     //set the url, number of POST vars, POST data
-    curl_setopt($ch,CURLOPT_URL, 'https://api.cachebank.com.br/api/v2/'.$methodUrl);
+    curl_setopt($ch,CURLOPT_URL, $url);
     curl_setopt($ch,CURLOPT_POST, 1);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
