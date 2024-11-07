@@ -103,7 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             WHERE id_lanc = :id_lanc";
         $stmt = $pdo->prepare($updateQuery);
         if (!$stmt) {
-             throw new Exception("Erro ao preparar declaração SQL para atualizar sis_lanc: " . $pdo->error);
+             throw new Exception("Erro ao preparar declaração SQL para atualizar cachebank_invoices: " . $pdo->error);
         }
         $stmt->bindParam(":linha_digitavel", $paymentRes["boleto"]["linhadigitavel"], PDO::PARAM_STR);
         $stmt->bindParam(":nosso_numero", $paymentRes["boleto"]["nossonumero"], PDO::PARAM_STR);
@@ -136,7 +136,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         updateQuery'.$updateQuery;
         $stmt = $pdo->prepare($updateQuery);
         if (!$stmt) {
-             throw new Exception("Erro ao preparar declaração SQL para atualizar sis_lanc: " . $pdo->error);
+             throw new Exception("Erro ao declaração SQL para atualizar sis_lanc: " . $pdo->error);
         }
         $datapagamento=$paymentRes["datapagamento"];
         $stmt->bindParam(":status", $statusName, PDO::PARAM_STR);
