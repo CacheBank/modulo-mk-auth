@@ -247,12 +247,14 @@
             echo '
        syncInternalInvoices - pago
         ';
-            $aberto_sql = "SELECT idtransaction FROM `cachebank_invoices` where status='pago' and amount_fees is null  "; 
+            $aberto_sql = "SELECT idtransaction FROM `cachebank_invoices` where amount_fees is null  "; 
         }
 
         $aberto_result = $conn->query($aberto_sql);
     
         while ($fatura = $aberto_result->fetch_assoc()) {
+            print_r($fatura);
+
             $idtransaction=$fatura["idtransaction"];
                 
             $paymentRes=obterTransacao($pdo,  $idtransaction);
