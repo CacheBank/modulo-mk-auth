@@ -130,6 +130,18 @@ add_menu.provedor(';
     shell_exec($sincPix);
 
 
+    // Adicionando informações de tarifas
+    echo '
+    Adicionando informações de tarifas
+    ';
+    $sql = "SHOW COLUMNS FROM `cachebank_invoices` where FIELD ='amount_fees' LIMIT 1";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+
+    if(!$stmt->fetchColumn()){
+        $pdo->exec(file_get_contents('/opt/mk-auth/admin/addons/cachebank/db/add-amount_fees_ch_invoices.sql'));
+
+    }
   
 
 ?>

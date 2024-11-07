@@ -1,0 +1,1 @@
+ALTER TABLE cachebank_invoices ADD `amount_fees` decimal(12,2);
