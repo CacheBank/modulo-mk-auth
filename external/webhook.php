@@ -136,6 +136,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         while ($fatura = $aberto_result->fetch_assoc()) {
             print_r($fatura);
+            echo '
+            --------------------';
         }
 
 
