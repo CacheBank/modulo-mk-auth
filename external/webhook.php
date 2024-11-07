@@ -132,20 +132,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $aberto_sql = "SELECT * from sis_lanc WHERE nossonum  = ".$paymentRes["boleto"]["nossonumero"]." and status='pago';";
         $stmt = $pdo->prepare($aberto_sql);
         $stmt->execute();
+
+           // Atualizar sis_lanc
+           $aberto_result = $conn->query($aberto_sql);
+           $aberto_sql = "SELECT * from sis_lanc WHERE nossonum  = ".$paymentRes["boleto"]["nossonumero"]." and status!='pago';";
+           while ($fatura = $aberto_result->fetch_assoc()) {
+               print_r($fatura);
+               echo '
+               --------------------';
+           }
     
         if(!$stmt->fetchColumn()){
             $stmt=null;
             $datapagamento=$paymentRes["datapagamento"];
             log_message("Aualizando2 lançamento usando nosso numero " . $paymentRes["boleto"]["nossonumero"]);
 
-              // Atualizar sis_lanc
-            $aberto_result = $conn->query($aberto_sql);
-            $aberto_sql = "SELECT * from sis_lanc WHERE nossonum  = ".$paymentRes["boleto"]["nossonumero"]." and status!='pago';";
-            while ($fatura = $aberto_result->fetch_assoc()) {
-                print_r($fatura);
-                echo '
-                --------------------';
-            }
+           
 
         
             
