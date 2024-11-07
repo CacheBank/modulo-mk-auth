@@ -23,7 +23,7 @@ Arquivo de Log menor que 35MB
 ';
 }
 
-if(in_array($minutoAtual, [0,5,15,30,45])) { 
+if($minutoAtual, [0,5,10,15,20,30,35,45,50,55]) { 
      echo '
 Checando e realizando atualizando do módulo
 ';
