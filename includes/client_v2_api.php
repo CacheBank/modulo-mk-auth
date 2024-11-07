@@ -16,11 +16,13 @@ function client($pdo, $params, $methodUrl, $method){
     //set the url, number of POST vars, POST data
     curl_setopt($ch,CURLOPT_URL, $url);
     if($method=='POST'){
-        curl_setopt($ch,CURLOPT_POST, value: 1);
-        curl_setopt($ch,CURLOPT_POSTFIELDS, $fields_string);
-    }
+        curl_setopt($ch,CURLOPT_POST, 1);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    }
 
+    
+
+     curl_setopt($ch,CURLOPT_POSTFIELDS, $fields_string);
 
     $headers = array(
         'Content-type: application/json',
