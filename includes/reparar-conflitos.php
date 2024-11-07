@@ -171,7 +171,8 @@
         
 
     function syncBill($pdo, $conn){
-      
+        log_message("
+       syncBill");
     $aberto_sql = "SELECT 
             DISTINCT(sis_lanc.uuid_lanc) as uuid_lanc, 
             sis_lanc.id as sis_lanc_id,
