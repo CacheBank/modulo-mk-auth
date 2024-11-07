@@ -255,12 +255,9 @@
         while ($fatura = $aberto_result->fetch_assoc()) {
 
             $idtransaction=$fatura["idtransaction"];
-                
             $paymentRes=obterTransacao($pdo,  $idtransaction);
-            
             $amountPaid=$paymentRes["status"]===7?$paymentRes["valortotal"]:$paymentRes["valorpago"];
             $statusName=getStatusPaymentName($paymentRes["status"]);
-
             $amount_fees=$paymentRes["custo"];
 
             log_message("Atribuindo valores a transacao " . $idtransaction);
@@ -283,7 +280,6 @@
             if (!$stmt) {
                 throw new Exception("Erro ao preparar declaração SQL para atualizar sis_lanc: " . $pdo->error);
             }
-            print_r($paymentRes);
             $linhaDigitavel=$paymentRes["boleto"]["linhadigitavel"];
             echo '
             linhaDigitavel'. $linhaDigitavel;
