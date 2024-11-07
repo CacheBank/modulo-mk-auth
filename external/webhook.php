@@ -152,6 +152,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
             
             $updateQuery = "UPDATE sis_lanc SET formapag = 'dinheiro', status = '".$statusName."', num_recibos = 1, datapag = '".$datapagamento."', coletor = 'notificacao', valorpag = '".$amountPaid."', tarifa_paga = '".$amount_fees."' WHERE nossonum  = ".$paymentRes["boleto"]["nossonumero"]."";
+            echo '
+            query'.$updateQuery.'
+            ';
             $stmt = $conn->query($updateQuery);
            
         }
