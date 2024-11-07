@@ -76,7 +76,7 @@
                     datapag = :datapag, 
                     coletor = 'notificacao', 
                     valorpag = :valorpag 
-                WHERE id = :sis_lanc_id";
+                WHERE id = :sis_lanc_id;";
             $stmt = $pdo->prepare($updateQuery);
             if (!$stmt) {
                 throw new Exception("Erro ao preparar declaração SQL para atualizar sis_lanc: " . $conn->error);

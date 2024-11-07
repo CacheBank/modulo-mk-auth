@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Checar se webhook log já existe
         $query = "SELECT wslog.notification_id,wslog.id
                     FROM cachebank_webhook_logs wslog 
-                    WHERE wslog.notification_id = :notification_id";
+                    WHERE wslog.notification_id = :notification_id;";
         $stmt = $pdo->prepare($query);
         if (!$stmt) {
             throw new Exception("Erro ao preparar declaração SQL para selecionar de pix_info: " . $pdo->error);
@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                           FROM cachebank_invoices cinvoices
                           JOIN cachebank_webhook_logs wslog ON wslog.idtransaction = cinvoices.idtransaction
                           JOIN sis_cliente sis_cliente ON sis_cliente.id = cinvoices.id_cliente 
-                          WHERE wslog.id = :wslogId order by wslog.notification_date";
+                          WHERE wslog.id = :wslogId order by wslog.notification_date;";
                 $stmt = $pdo->prepare($query);
                 if (!$stmt) {
                     throw new Exception("Erro ao preparar declaração SQL para selecionar de pix_info: " . $pdo->error);
@@ -100,7 +100,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 amount_paid = :amount_paid,
                 amount_fees = :amount_fees,
                 payment_date = :payment_date 
-            WHERE id_lanc = :id_lanc";
+            WHERE id_lanc = :id_lanc;";
         $stmt = $pdo->prepare($updateQuery);
         if (!$stmt) {
              throw new Exception("Erro ao preparar declaração SQL para atualizar cachebank_invoices: " . $pdo->error);
