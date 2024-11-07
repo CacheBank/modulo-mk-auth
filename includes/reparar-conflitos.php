@@ -258,7 +258,6 @@
                 
             $paymentRes=obterTransacao($pdo,  $idtransaction);
             
-            print_r($paymentRes);
             $amountPaid=$paymentRes["status"]===7?$paymentRes["valortotal"]:$paymentRes["valorpago"];
             $statusName=getStatusPaymentName($paymentRes["status"]);
 
@@ -284,7 +283,10 @@
             if (!$stmt) {
                 throw new Exception("Erro ao preparar declaração SQL para atualizar sis_lanc: " . $pdo->error);
             }
-            $stmt->bindParam(":linha_digitavel", $paymentRes["boleto"]["linhadigitavel"], PDO::PARAM_STR);
+            $linhaDigitavel=$paymentRes["boleto"]["linhadigitavel"];
+            echo '
+            linhaDigitavel'. $linhaDigitavel;
+            $stmt->bindParam(":linha_digitavel", $linhaDigitavel, PDO::PARAM_STR);
             $stmt->bindParam(":nosso_numero", $paymentRes["boleto"]["nossonumero"], PDO::PARAM_STR);
             $stmt->bindParam(":codigo_barra", $paymentRes["boleto"]["codigobarra"], PDO::PARAM_STR);
 
