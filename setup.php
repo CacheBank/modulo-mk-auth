@@ -134,7 +134,7 @@ add_menu.provedor(';
     echo '
     Adicionando informações de tarifas
     ';
-    $sql = "SHOW COLUMNS FROM `cachebank_invoices` where FIELD ='amount_fees' LIMIT 1";
+    $sql = "SHOW COLUMNS FROM `cachebank_invoices` where FIELD ='amount_fees'";
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
 
