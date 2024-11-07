@@ -1,4 +1,5 @@
 <?php
+$minutoAtual=date('i');
 echo exec('php /opt/mk-auth/admin/addons/cachebank/includes/gerar_boleto.php;
 ');
 echo exec('php /opt/mk-auth/admin/addons/cachebank/includes/atualizarcobrancas.php;');
@@ -22,7 +23,7 @@ Arquivo de Log menor que 35MB
 ';
 }
 
-if(in_array(date('i'), [0,5,15,30,45])) { 
+if(in_array($minutoAtual, [0,5,15,30,45])) { 
      echo '
 Checando e realizando atualizando do módulo
 ';
