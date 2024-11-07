@@ -108,7 +108,7 @@ add_menu.provedor(';
     Criando páginas administrativas
     ';
     // Cria pasta na raiz webserver
-    shell_exec('mkdir -p /var/www/cachebank');
+    exec('mkdir -p /var/www/cachebank');
 
     // Move arquivos WEB essenciais
     $dirEssential=dirname(__FILE__) . DIRECTORY_SEPARATOR.'external';
@@ -116,18 +116,18 @@ add_menu.provedor(';
     cp -rf '.$dirEssential.'/* /var/www/cachebank/;
     ';
     echo $moveCMD;
-    shell_exec($moveCMD);
+    exec($moveCMD);
 
      $moveCMD='
     cp /opt/mk-auth/boleto/boleto.hhvm /opt/mk-auth/boleto/boleto2.hhvm;
     cp /opt/mk-auth/boleto/carne.hhvm /opt/mk-auth/boleto/carne2.hhvm;
      ';
-    shell_exec($moveCMD);
+    exec($moveCMD);
 
     $sincPix='
         php /opt/mk-auth/admin/addons/cachebank/includes/setup_syncpix.php;
      ';
-    shell_exec($sincPix);
+    exec($sincPix);
 
 
     // Adicionando informações de tarifas
