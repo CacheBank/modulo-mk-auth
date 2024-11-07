@@ -247,7 +247,7 @@
             echo '
        syncInternalInvoices - pago
         ';
-            $aberto_sql = "SELECT idtransaction FROM `cachebank_invoices` where amount_fees is null  "; 
+            $aberto_sql = "SELECT * FROM `cachebank_invoices` where amount_fees is null  "; 
         }
 
         $aberto_result = $conn->query($aberto_sql);
