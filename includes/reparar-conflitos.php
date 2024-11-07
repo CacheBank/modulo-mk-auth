@@ -243,10 +243,10 @@
     }
 
     function syncInternalInvoices($pdo, $conn, $paymentStatus){
-        echo '
-       syncInternalInvoices
-        ';
         if($paymentStatus=='pago'){
+            echo '
+       syncInternalInvoices - pago
+        ';
             $aberto_sql = "SELECT idtransaction FROM `cachebank_invoices` where status='pago' and amount_fees is null  "; 
         }
 
@@ -256,6 +256,7 @@
             $idtransaction=$fatura["idtransaction"];
                 
             $paymentRes=obterTransacao($pdo,  $idtransaction);
+            print_r($paymentRes);
             $amountPaid=$paymentRes["status"]===7?$paymentRes["valortotal"]:$paymentRes["valorpago"];
             $statusName=getStatusPaymentName($paymentRes["status"]);
 
