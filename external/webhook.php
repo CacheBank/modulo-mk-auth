@@ -134,7 +134,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->execute();
 
            // Atualizar sis_lanc
-           $aberto_sql2 = "SELECT * from sis_lanc WHERE id = ".$id_lanc." ";
+           $aberto_sql2 = "SELECT id, datapag, nossonum, valorpag, login from sis_lanc WHERE id = ".$id_lanc." ";
            echo '
             aberto_sql2'.$aberto_sql2.'
             ';
