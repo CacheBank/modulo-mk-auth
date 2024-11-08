@@ -140,6 +140,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (!$stmt->execute()) {
             throw new Exception("Erro ao executar declaração SQL para atualizar cachebank_invoices: " . $stmt->error);
         }
+        $tmpStmt=$stmt->fetch(PDO::FETCH_ASSOC);
+        mysqli_stmt_close($stmt);
 
         
         log_message("Iniciando atualização de lançamento");
