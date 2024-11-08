@@ -126,7 +126,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             throw new Exception("Erro ao executar declaração SQL para atualizar cachebank_invoices: " . $stmt->error);
         }
 
-        log_message("Iniciando atualização de lançamento");
+        log_message("Iniciando2 atualização de lançamento");
 
          // Atualizar sis_lanc
          $aberto_sql = "SELECT id, datapag, nossonum, valorpag from sis_lanc WHERE id = ".$id_lanc." ";
