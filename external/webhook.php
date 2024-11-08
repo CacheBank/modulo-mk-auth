@@ -162,7 +162,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if($amount_fees){
                 $updateQuery = $updateQuery.", tarifa_paga = '".$amount_fees."' ";
             }
-            $updateQuery = $updateQuery. " WHERE nossonum  = ".$paymentRes["boleto"]["nossonumero"]." and login = '".$login_cliente."'";
+            $updateQuery = $updateQuery. " WHERE id  = ".$id_lanc." and login = '".$login_cliente."'";
             echo '
             query'.$updateQuery.'
             ';
