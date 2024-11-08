@@ -136,8 +136,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         log_message("Iniciando atualização de lançamento");
 
         echo "
-        Login do cliente.".$login_cliente."
-        SIS ID.".$id_lanc."
+        Login do cliente:".$login_cliente."
+        SIS ID:".$id_lanc."
         ";
 
         // Obtem dados do lançamento atual
@@ -162,7 +162,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if($amount_fees){
                 $updateQuery = $updateQuery.", tarifa_paga = '".$amount_fees."' ";
             }
-            $updateQuery = $updateQuery. " WHERE nossonum  = ".$paymentRes["boleto"]["nossonumero"]."";
+            $updateQuery = $updateQuery. " WHERE nossonum  = ".$paymentRes["boleto"]["nossonumero"]." and login = '".$login_cliente."'";
             echo '
             query'.$updateQuery.'
             ';
