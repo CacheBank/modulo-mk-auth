@@ -136,7 +136,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         log_message("Iniciando atualização de lançamento");
 
         echo "
-        Login do cliente.".$login_cliente;
+        Login do cliente.".$login_cliente."
+        SIS ID.".$id_lanc."
+        ";
 
         // Obtem dados do lançamento atual
         $aberto_sql2 = "SELECT id, datapag, nossonum, valorpag, login from sis_lanc WHERE id = ".$id_lanc." ";
