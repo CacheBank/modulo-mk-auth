@@ -129,8 +129,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         log_message("Iniciando atualização de lançamento");
 
          // Atualizar sis_lanc
-        $aberto_sql = "SELECT * from sis_lanc WHERE nossonum  = '".$paymentRes["boleto"]["nossonumero"]."' and status='pago'";
-        $stmt = $pdo->prepare($aberto_sql);
+         $aberto_sql = "SELECT id, datapag, nossonum, valorpag from sis_lanc WHERE id = ".$id_lanc." ";
+         $stmt = $pdo->prepare($aberto_sql);
         $stmt->execute();
 
            // Atualizar sis_lanc
