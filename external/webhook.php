@@ -185,7 +185,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Fim lançamento Financeiro
 
 
-        log_message("Gerando log de pagamento " . $id_lanc);
+        log_message("Gerando log de pagamento :" . $id_lanc);
          // Inserir log em sis_log
         $logMessage = "Atualização do titulo " . $id_lanc . " por cachebank - IP:127.0.0.1";
         $logQuery = "INSERT INTO sis_logs (registro, data, login, tipo, operacao,id) VALUES (:registro, NOW(), 'mk-bot', 'admin', 'OPERFALL',default)";
@@ -214,7 +214,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             throw new Exception("Erro ao executar declaração SQL para atualizar sis_lanc: " . $stmt->error);
         }
 
-        echo "Executado";
+        echo "
+        Executado";
 
 
 }
