@@ -30,10 +30,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Checar se webhook log já existe
         $query = "SELECT wslog.notification_id,wslog.id
                     FROM cachebank_webhook_logs wslog 
-                    WHERE wslog.notification_id = :notification_id;";
+                    WHERE wslog.notification_id = :notification_id";
         $stmt = $pdo->prepare($query);
         if (!$stmt) {
-            throw new Exception("Erro ao preparar declaração SQL para selecionar de pix_info: " . $pdo->error);
+            throw new Exception("Erro ao preparar declaração SQL para selecionar de cachebank_webhook_logs: " . $pdo->error);
         }
         $stmt->bindParam("notification_id", $notification_id,  PDO::PARAM_STR);
         $stmt->execute();
@@ -94,7 +94,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         echo "Dados da transação
         ";
-        print_r($paymentRes);
+       // print_r($paymentRes);
         echo "
         Fim dados da transação";
 
