@@ -26,6 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             log_message("Client ID diferente do recebido: " );
             return ;
         }
+        echo ' Checar se webhook log já existe';
         // Checar se webhook log já existe
         $query = "SELECT wslog.notification_id,wslog.id
                     FROM cachebank_webhook_logs wslog 
@@ -37,6 +38,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bindParam("notification_id", $notification_id,  PDO::PARAM_STR);
         $stmt->execute();
         $resDb=$stmt->fetch(PDO::FETCH_ASSOC);
+        var_dump($resDb);
+        echo ' End check se webhook log já existe';
+
+
         if(isset($resDb["id"])){
             $last_id=$resDb["id"];
         }else{
@@ -63,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                           FROM cachebank_invoices cinvoices
                           JOIN cachebank_webhook_logs wslog ON wslog.idtransaction = cinvoices.idtransaction
                           JOIN sis_cliente sis_cliente ON sis_cliente.id = cinvoices.id_cliente 
-                          WHERE wslog.id = :wslogId order by cinvoices.id_lanc desc;";
+                          WHERE wslog.id = :wslogId order by cinvoices.id_lanc desc limit 1;";
                 $stmt = $pdo->prepare($query);
                 if (!$stmt) {
                     throw new Exception("Erro ao preparar declaração SQL para selecionar de pix_info: " . $pdo->error);
