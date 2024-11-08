@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                           FROM cachebank_invoices cinvoices
                           JOIN cachebank_webhook_logs wslog ON wslog.idtransaction = cinvoices.idtransaction
                           JOIN sis_cliente sis_cliente ON sis_cliente.id = cinvoices.id_cliente 
-                          WHERE wslog.id = :wslogId order by wslog.notification_date desc;";
+                          WHERE wslog.id = :wslogId order by cinvoices.id_lanc desc;";
                 $stmt = $pdo->prepare($query);
                 if (!$stmt) {
                     throw new Exception("Erro ao preparar declaração SQL para selecionar de pix_info: " . $pdo->error);
