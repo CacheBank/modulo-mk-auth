@@ -135,6 +135,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
            // Atualizar sis_lanc
            $aberto_sql2 = "SELECT * from sis_lanc WHERE id = ".$id_lanc." ";
+           echo '
+            aberto_sql2'.$aberto_sql2.'
+            ';
            $aberto_result2 = $conn->query($aberto_sql2);
            while ($fatura = $aberto_result2->fetch_assoc()) {
                print_r($fatura);
