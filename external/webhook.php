@@ -126,33 +126,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             throw new Exception("Erro ao executar declaração SQL para atualizar cachebank_invoices: " . $stmt->error);
         }
 
-        log_message("Iniciando1 atualização de lançamento");
+        
+        log_message("Iniciando atualização de lançamento");
 
-           // Atualizar sis_lanc
-           $aberto_sql2 = "SELECT id, datapag, nossonum, valorpag from sis_lanc WHERE id = ".$id_lanc." ";
-           echo '
-            aberto_sql2'.$aberto_sql2.'
-            ';
-           $aberto_result2 = $conn->query($aberto_sql2);
-           while ($fatura = $aberto_result2->fetch_assoc()) {
-               print_r($fatura);
-               echo '
-               --------------------';
-           }
-
-           log_message("Iniciando2 atualização de lançamento");
-         // Atualizar sis_lanc
-         $aberto_sql = "SELECT id, datapag, nossonum, valorpag from sis_lanc WHERE id = ".$id_lanc." ";
-
-        $stmt = $pdo->prepare($aberto_sql);
-        if (!$stmt) {
-        throw new Exception("Erro ao preparar declaração SQL para selecionar de sis_lanc1: " . $pdo->error);
+        // Obtem dados do lançamento atual
+        $aberto_sql2 = "SELECT id, datapag, nossonum, valorpag from sis_lanc WHERE id = ".$id_lanc." ";
+        $aberto_result2 = $conn->query($aberto_sql2);
+        while ($fatura = $aberto_result2->fetch_assoc()) {
+            print_r($fatura);
+            echo '
+            --------------------';
         }
-        $stmt->execute();
-        $resDb=$stmt->fetch(PDO::FETCH_ASSOC);
-        print_r($resDb);
+
     
-        if(!$resDb["id"]){
             $stmt=null;
             $datapagamento= $paymentRes["datapagamento"];
             echo '
@@ -160,7 +146,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $dataFormatada = date("Y-m-d H:i:s", strtotime($datapagamento));
 
             log_message("Aualizando2 lançamento usando nosso numero " . $paymentRes["boleto"]["nossonumero"]);
-           
 
             $updateQuery = "UPDATE sis_lanc SET formapag = 'dinheiro', `status` = '".$statusName."', num_recibos = 1, datapag = DATE_FORMAT('".$dataFormatada."', '%Y-%m-%d %H:%i:%s'), coletor = 'notificacao', valorpag = '".$amountPaid."'";
             if($amount_fees){
@@ -175,9 +160,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 echo("Error description: " . mysqli_error($conn));
                 }
            
-        }
-
-
         
 
         // Fim lançamento Financeiro
