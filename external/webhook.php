@@ -135,8 +135,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         log_message("Iniciando atualização de lançamento");
 
+        echo "
+        Login do cliente.".$login_cliente;
+
         // Obtem dados do lançamento atual
-        $aberto_sql2 = "SELECT id, datapag, nossonum, valorpag from sis_lanc WHERE id = ".$id_lanc." ";
+        $aberto_sql2 = "SELECT id, datapag, nossonum, valorpag, login from sis_lanc WHERE id = ".$id_lanc." ";
         $aberto_result2 = $conn->query($aberto_sql2);
         while ($fatura = $aberto_result2->fetch_assoc()) {
             print_r($fatura);
