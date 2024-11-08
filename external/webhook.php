@@ -128,11 +128,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         log_message("Iniciando2 atualização de lançamento");
 
-         // Atualizar sis_lanc
-         $aberto_sql = "SELECT id, datapag, nossonum, valorpag from sis_lanc WHERE id = ".$id_lanc." ";
-         $stmt = $pdo->prepare($aberto_sql);
-        $stmt->execute();
-
+        
            // Atualizar sis_lanc
            $aberto_sql2 = "SELECT id, datapag, nossonum, valorpag from sis_lanc WHERE id = ".$id_lanc." ";
            echo '
@@ -144,8 +140,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                echo '
                --------------------';
            }
+
+
+         // Atualizar sis_lanc
+         $aberto_sql = "SELECT id, datapag, nossonum, valorpag from sis_lanc WHERE id = ".$id_lanc." ";
+
+        $stmt = $pdo->prepare($aberto_sql);
+        if (!$stmt) {
+        throw new Exception("Erro ao preparar declaração SQL para selecionar de pix_info: " . $pdo->error);
+        }
+        $stmt->execute();
+        $resDb=$stmt->fetch(PDO::FETCH_ASSOC);
     
-        if(!$stmt->fetchColumn()){
+        if(!$resDb["id"]){
             $stmt=null;
             $datapagamento= $paymentRes["datapagamento"];
             echo '
