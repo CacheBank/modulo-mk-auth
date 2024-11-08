@@ -128,7 +128,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         log_message("Iniciando3 atualização de lançamento");
 
-        
            // Atualizar sis_lanc
            $aberto_sql2 = "SELECT id, datapag, nossonum, valorpag from sis_lanc WHERE id = ".$id_lanc." ";
            echo '
@@ -147,7 +146,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $stmt = $pdo->prepare($aberto_sql);
         if (!$stmt) {
-        throw new Exception("Erro ao preparar declaração SQL para selecionar de pix_info: " . $pdo->error);
+        throw new Exception("Erro ao preparar declaração SQL para selecionar de sis_lanc1: " . $pdo->error);
         }
         $stmt->execute();
         $resDb=$stmt->fetch(PDO::FETCH_ASSOC);
@@ -160,7 +159,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $dataFormatada = date("Y-m-d H:i:s", strtotime($datapagamento));
 
             log_message("Aualizando2 lançamento usando nosso numero " . $paymentRes["boleto"]["nossonumero"]);
-
            
 
             $updateQuery = "UPDATE sis_lanc SET formapag = 'dinheiro', `status` = '".$statusName."', num_recibos = 1, datapag = DATE_FORMAT('".$dataFormatada."', '%Y-%m-%d %H:%i:%s'), coletor = 'notificacao', valorpag = '".$amountPaid."'";
