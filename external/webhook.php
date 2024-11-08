@@ -126,7 +126,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             throw new Exception("Erro ao executar declaração SQL para atualizar cachebank_invoices: " . $stmt->error);
         }
 
-        log_message("Iniciando3 atualização de lançamento");
+        log_message("Iniciando1 atualização de lançamento");
 
            // Atualizar sis_lanc
            $aberto_sql2 = "SELECT id, datapag, nossonum, valorpag from sis_lanc WHERE id = ".$id_lanc." ";
@@ -140,7 +140,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                --------------------';
            }
 
-
+           log_message("Iniciando2 atualização de lançamento");
          // Atualizar sis_lanc
          $aberto_sql = "SELECT id, datapag, nossonum, valorpag from sis_lanc WHERE id = ".$id_lanc." ";
 
@@ -150,6 +150,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         $stmt->execute();
         $resDb=$stmt->fetch(PDO::FETCH_ASSOC);
+        print_r($resDb);
     
         if(!$resDb["id"]){
             $stmt=null;
