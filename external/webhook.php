@@ -134,7 +134,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->execute();
 
            // Atualizar sis_lanc
-           $aberto_sql2 = "SELECT id, datapag, nossonum, valorpag, login from sis_lanc WHERE id = ".$id_lanc." ";
+           $aberto_sql2 = "SELECT id, datapag, nossonum, valorpag from sis_lanc WHERE id = ".$id_lanc." ";
            echo '
             aberto_sql2'.$aberto_sql2.'
             ';
@@ -156,7 +156,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
            
 
-            $updateQuery = "UPDATE sis_lanc SET formapag = 'dinheiro', status = '".$statusName."', num_recibos = 1, datapag = DATE_FORMAT('".$dataFormatada."', '%Y-%m-%d %H:%i:%s'), coletor = 'notificacao', valorpag = '".$amountPaid."' ";
+            $updateQuery = "UPDATE sis_lanc SET formapag = 'dinheiro', `status` = '".$statusName."', num_recibos = 1, datapag = DATE_FORMAT('".$dataFormatada."', '%Y-%m-%d %H:%i:%s'), coletor = 'notificacao', valorpag = '".$amountPaid."'";
             if($amount_fees){
                 $updateQuery = $updateQuery.", tarifa_paga = '".$amount_fees."' ";
             }
@@ -164,7 +164,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo '
             query'.$updateQuery.'
             ';
-            $stmt = $conn->query($updateQuery);
+            if (!$conn->query($updateQuery))
+                {
+                echo("Error description: " . mysqli_error($conn));
+                }
            
         }
 
