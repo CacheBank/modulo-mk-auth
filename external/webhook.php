@@ -39,12 +39,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->execute();
         $resDb=$stmt->fetch(PDO::FETCH_ASSOC);
         var_dump($resDb);
-        echo ' End check se webhook log já existe';
 
 
         if(isset($resDb["id"])){
+            echo "existe id";
             $last_id=$resDb["id"];
         }else{
+            echo "criar novo id log";
+
             // Inserir o payload completo na tabela de logs do webhook
             $stmt = $pdo->prepare("INSERT INTO cachebank_webhook_logs (notification_id, idtransaction,client_id) VALUES (:notification_id, :idtransaction, :client_id )");
             if (!$stmt) {
@@ -62,6 +64,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             log_message("Inserção bem-sucedida em cachebank_webhook_logs, ID: " . $last_id);
 
         }
+        echo ' End check se webhook log já existe';
+
 
         // Comparar txid com pix_info e atualizar sis_lanc
                 $query = "SELECT cinvoices.idtransaction as idtransaction, cinvoices.id_cliente as id_cliente, cinvoices.id_lanc as id_lanc, sis_cliente.login as login_cliente 
