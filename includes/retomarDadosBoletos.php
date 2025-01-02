@@ -68,6 +68,12 @@
                 Nome:".$fatura["cliente_nome"]."
                 Vencimento:".$fatura["lanc_datavenc"];
                 continue;
+            }else if(empty($res["id"])){
+                echo "Atualizando dados  
+                Lançam Id:".$fatura["sis_lanc_id"]."
+                Nome:".$fatura["cliente_nome"]."
+                Vencimento:".$fatura["lanc_datavenc"];
+                continue;
             }
 
             $amountPaid=$res["status"]===7?$res["valortotal"]:$res["valorpago"];
@@ -135,22 +141,11 @@
                     throw new Exception("Erro ao executar declaração SQL para atualizar sis_lanc: " . $conn->error);
                 }
                }catch(Exception $ex){
-
-                     // Atualizar sis_lanc
-                    $updateQuery = "UPDATE sis_qrpix SET  qrcode = :qrcode WHERE titulo = :titulo";
-                    $stmt = $pdo->prepare($updateQuery);
-                    if (!$stmt) {
-                        throw new Exception("Erro ao preparar declaração SQL para atualizar sis_lanc: " . $conn->error);
-                    }
-                    $stmt->bindParam(":titulo", $sis_lanc_uuid_lanc, PDO::PARAM_STR);
-                    $stmt->bindParam(":qrcode", $pix_copia_cola, PDO::PARAM_STR);
-
-                    if (!$stmt->execute()) {
-                        throw new Exception("Erro ao executar declaração SQL para atualizar sis_lanc: " . $conn->error);
-                    }
+                    echo "
+                    Dados do Pix já cadastrado
+                    ";
                 }
             }
-
            
 
            
