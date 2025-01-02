@@ -75,8 +75,8 @@
 
             $idtransacao=$res["id"];
             $nosso_numero=$res["boleto"]["nossonumero"];
-            $linha_digitavel=$res["boleto"]["linhaDigitavel"];
-            $codigo_barra=$res["boleto"]["codigoDeBarra"];
+            $linha_digitavel=$res["boleto"]["linhadigitavel"];
+            $codigo_barra=$res["boleto"]["codigobarra"];
 
             $txId=$res["pix"]["txid"];
             $url_qrcode='https://fatura.cachebank.com.br/api/v3/show/qrcode/'.$res["id"];
@@ -121,7 +121,8 @@
 
 
             if(tableExists($pdo, 'sis_qrpix')){
-               // Atualizar qrcode
+               try{
+                // Atualizar qrcode
                 $updateQuery = "INSERT INTO sis_qrpix ( titulo , qrcode ) VALUES ( :titulo, :qrcode )";
                 $stmt = $pdo->prepare($updateQuery);
                 if (!$stmt) {
@@ -132,6 +133,21 @@
 
                 if (!$stmt->execute()) {
                     throw new Exception("Erro ao executar declaração SQL para atualizar sis_lanc: " . $conn->error);
+                }
+               }catch(Exception $ex){
+
+                     // Atualizar sis_lanc
+                    $updateQuery = "UPDATE sis_qrpix SET  qrcode = :qrcode WHERE titulo = :titulo";
+                    $stmt = $pdo->prepare($updateQuery);
+                    if (!$stmt) {
+                        throw new Exception("Erro ao preparar declaração SQL para atualizar sis_lanc: " . $conn->error);
+                    }
+                    $stmt->bindParam(":titulo", $sis_lanc_uuid_lanc, PDO::PARAM_STR);
+                    $stmt->bindParam(":qrcode", $pix_copia_cola, PDO::PARAM_STR);
+
+                    if (!$stmt->execute()) {
+                        throw new Exception("Erro ao executar declaração SQL para atualizar sis_lanc: " . $conn->error);
+                    }
                 }
             }
 
