@@ -62,6 +62,12 @@
             
             $res=obterTransacaoPorReferencia($pdo,  'ref-'.$sis_lanc_id);
 
+            if(empty($res["id"])){
+                echo "Não encontrado dados para 
+                Nome:".$fatura["cliente_nome"]."
+                Vencimento:".$fatura["lanc_datavenc"];
+            }
+
             $amountPaid=$res["status"]===7?$res["valortotal"]:$res["valorpago"];
             $amount_fees=$res["custo"];
 
