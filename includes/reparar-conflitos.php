@@ -10,7 +10,7 @@
     syncCaixaPayment($pdo, $conn, true);
     syncCaixaFeesPayment($pdo, $conn, true);
 
-    if(in_array($minutoAtual, [15,30,45,60])) { 
+    if(in_array($minutoAtual, [15])) { 
         syncInternalInvoices($pdo, $conn, 'pago');
     }
 
@@ -275,7 +275,7 @@
             echo '
        syncInternalInvoices - pago
         ';
-            $aberto_sql = "SELECT * FROM `cachebank_invoices` where amount_fees is null  "; 
+            $aberto_sql = "SELECT * FROM `cachebank_invoices` where payment_date is null "; 
         }
 
         $aberto_result = $conn->query($aberto_sql);
