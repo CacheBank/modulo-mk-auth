@@ -66,6 +66,7 @@
                 echo "Não encontrado dados para 
                 Nome:".$fatura["cliente_nome"]."
                 Vencimento:".$fatura["lanc_datavenc"];
+                continue;
             }
 
             $amountPaid=$res["status"]===7?$res["valortotal"]:$res["valorpago"];
