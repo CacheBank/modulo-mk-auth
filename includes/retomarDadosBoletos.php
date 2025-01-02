@@ -64,6 +64,7 @@
 
             if(empty($res["id"])){
                 echo "Não encontrado dados para 
+                Lançam Id:".$fatura["sis_lanc_id"]."
                 Nome:".$fatura["cliente_nome"]."
                 Vencimento:".$fatura["lanc_datavenc"];
                 continue;
