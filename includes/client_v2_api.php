@@ -209,3 +209,10 @@ function obterTransacao($pdo,$idtransaction){
 
     return $client;
 }
+
+function obterTransacaoPorReferencia($pdo,$referenceId){
+    
+    $client=client($pdo,[], 'transacao/reference/'.$referenceId,'GET');
+
+    return $client;
+}
