@@ -2,13 +2,17 @@
     require_once '/opt/mk-auth/admin/addons/cachebank/db.hhvm';
     require_once '/opt/mk-auth/admin/addons/cachebank/includes/utils.hhvm';
     require_once '/opt/mk-auth/admin/addons/cachebank/includes/client_v2_api.php';
+    $minutoAtual=date('i');
 
     $config = getConfig($pdo);
 
     syncBill($pdo, $conn);
     syncCaixaPayment($pdo, $conn, true);
     syncCaixaFeesPayment($pdo, $conn, true);
-    syncInternalInvoices($pdo, $conn, 'pago');
+
+    if(in_array($minutoAtual, [15,30,45,60])) { 
+        syncInternalInvoices($pdo, $conn, 'pago');
+    }
 
     function syncCaixaPayment($pdo, $conn, $force=false){
         if($force){
