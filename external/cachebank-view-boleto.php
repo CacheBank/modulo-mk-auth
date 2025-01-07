@@ -14,9 +14,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                     throw new Exception("Erro ao preparar declaração SQL para selecionar de pix_info: " . $pdo->error);
                 }
                 if(is_string($idLanca)){
-                    $stmt->bindParam(":id_lanc", $idLanca,  PDO::PARAM_INT);
-                }else {
                     $stmt->bindParam(":id_lanc", $idLanca,  PDO::PARAM_STR);
+                }else {
+                    $stmt->bindParam(":id_lanc", $idLanca,  PDO::PARAM_INT);
                 }
                 $stmt->execute();
                 $resDb=$stmt->fetch(PDO::FETCH_ASSOC);
