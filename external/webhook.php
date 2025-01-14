@@ -69,19 +69,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         echo ' End check se webhook log já existe';
 
+        $paymentRes=obterDadosWebHookBoleto($pdo, $notification_id, $idtransaction);
+        $id_lanc_ref=str_replace('ref-', "", $paymentRes["referenciapedido"]);
 
         // Comparar txid com pix_info e atualizar sis_lanc
                 $query = "SELECT cinvoices.idtransaction as idtransaction, cinvoices.id_cliente as id_cliente, cinvoices.id_lanc as id_lanc, sis_cliente.login as login_cliente 
                           FROM cachebank_invoices cinvoices
                           JOIN cachebank_webhook_logs wslog ON wslog.idtransaction = cinvoices.idtransaction
                           JOIN sis_cliente sis_cliente ON sis_cliente.id = cinvoices.id_cliente 
-                          WHERE wslog.id = :wslogId and wslog.notification_id=:notification_id order by wslog.notification_date desc limit 1;";
+                          WHERE cinvoices.id_lanc=:id_lanc order by wslog.notification_date desc limit 1;";
                 $stmt = $pdo->prepare($query);
                 if (!$stmt) {
                     throw new Exception("Erro ao preparar declaração SQL para selecionar de pix_info: " . $pdo->error);
                 }
-                $stmt->bindParam(":wslogId", $last_id,  PDO::PARAM_INT);
-                $stmt->bindParam(":notification_id", $notification_id, PDO::PARAM_STR);
+                $stmt->bindParam(":id_lanc", $id_lanc_ref,  PDO::PARAM_INT);
                 $stmt->execute();
                 $resDb=$stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -92,7 +93,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
         log_message("Consultando dados externos da transação WebHookId: " . $last_id);
-        $paymentRes=obterDadosWebHookBoleto($pdo, $notification_id, $idtransaction);
         $amountPaid=$paymentRes["status"]===7?$paymentRes["valortotal"]:$paymentRes["valorpago"];
         $statusName=getStatusPaymentName($paymentRes["status"]);
 

@@ -40,7 +40,6 @@
             FROM sis_lanc 
             inner join sis_cliente on sis_cliente.login=sis_lanc.login
             inner join sis_boleto on sis_boleto.id=sis_cliente.conta
-            inner join sis_plano on sis_plano.nome=sis_cliente.plano
             WHERE 
                 deltitulo =0  
                 AND (
