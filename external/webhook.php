@@ -159,7 +159,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
             $stmt=null;
             
-            $dataFormatada = date("Y-m-d", strtotime($paymentRes["datapagamento"]));
+            $dataFormatada = date("Y-m-d H:i:s", strtotime($paymentRes["datapagamento"]));
             echo '
             datapagamento'.$dataFormatada;
         
