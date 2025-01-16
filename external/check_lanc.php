@@ -36,17 +36,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
        
         $aberto_sql2 = "SELECT id, datapag, nossonum, recibo, valorpag, `login`, datapag, coletor,`status`, formapag,num_recibos,referencia,datavenc,deltitulo from sis_lanc WHERE `id` = ".$lancId." ";
         $aberto_result2 = $conn->query($aberto_sql2);
-        if (!$aberto_result2) {
-            die("Error: " . $conn->error);
+        while ($fatura = $aberto_result2->fetch_assoc()) {
+            $json_data = json_encode($fatura);
+
+            echo $json_data;
+    
+            return $json_data;
         }
-        
-        $results = $aberto_result2->fetchAll(PDO::FETCH_ASSOC);
-        $json_data = json_encode($results);
-
-        echo $json_data;
-
-        return $json_data;
-
 
 }
 
