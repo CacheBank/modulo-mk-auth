@@ -166,11 +166,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             log_message("Aualizando2 lançamento usando nosso numero " . $paymentRes["boleto"]["nossonumero"]);
 
             // $updateQuery = "UPDATE sis_lanc SET formapag = 'dinheiro', `status` = '".$statusName."', datapag = '".$datapagamento."', coletor = 'notificacao', num_recibos = 1, recibo='".$idtransaction."', valorpag = ".$amountPaid."";
-            // if($amount_fees){
-            //     $updateQuery = $updateQuery.", tarifa_paga = ".$amount_fees." ";
-            // }
+         
             $updateQuery = "UPDATE sis_lanc SET formapag = 'dinheiro', `status` = '".$statusName."', valorpag = ".$amountPaid."";
-
+            if($amount_fees){
+                $updateQuery = $updateQuery.", tarifa_paga = ".$amount_fees." ";
+            }
             $updateQuery = $updateQuery. "
              WHERE  id  = '".$id_lanc."'
                 and login = '".$login_cliente."' 
