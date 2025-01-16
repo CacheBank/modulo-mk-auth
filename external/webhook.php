@@ -161,13 +161,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $datapagamento= $paymentRes["datapagamento"];
             echo '
             datapagamento'.$datapagamento;
-            $dataFormatada = date("Y-m-d H:i:s", strtotime($datapagamento));
+          //  $dataFormatada = date("Y-m-d H:i:s", strtotime($datapagamento));
 
             log_message("Aualizando2 lançamento usando nosso numero " . $paymentRes["boleto"]["nossonumero"]);
 
             // $updateQuery = "UPDATE sis_lanc SET formapag = 'dinheiro', `status` = '".$statusName."', datapag = '".$datapagamento."', coletor = 'notificacao', num_recibos = 1, recibo='".$idtransaction."', valorpag = ".$amountPaid."";
          
-            $updateQuery = "UPDATE sis_lanc SET formapag = 'dinheiro', `status` = '".$statusName."', valorpag = ".$amountPaid.", coletor = 'notificacao', num_recibos = 1 ";
+            $updateQuery = "UPDATE sis_lanc SET formapag = 'dinheiro', `status` = '".$statusName."', valorpag = ".$amountPaid.", coletor = 'notificacao', num_recibos = 1, datapag = '".$datapagamento."'  ";
             if($amount_fees){
                 $updateQuery = $updateQuery.", tarifa_paga = ".$amount_fees." ";
             }
