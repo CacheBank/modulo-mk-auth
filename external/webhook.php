@@ -180,7 +180,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     or formapag != 'dinheiro' 
                     or recibo is null
                 ) 
-             ";;
+             ";
             echo '
             query'.$updateQuery.'
             ';
