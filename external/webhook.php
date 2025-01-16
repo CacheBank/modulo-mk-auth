@@ -188,18 +188,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ';
             $stmt = $pdo->prepare($updateQuery);
 
-            if (!$stmt) {
-                throw new Exception("Erro ao preparar declaração SQL para atualizar sis_lanc: " . $pdo->error);
-            }
-            
             if (!$stmt->execute()) {
-                throw new Exception("Erro ao executar declaração SQL para atualizar sis_lanc: " . $stmt->error);
+                // Get the error information using PDO::errorInfo()
+                $errorInfo = $stmt->errorInfo();
+                throw new Exception("Erro ao executar declaração SQL para atualizar sis_lanc: " . $errorInfo[2]); 
             }
             $stmt=null;
         
 
         // Fim lançamento Financeiro
-
 
         log_message("Gerando log de pagamento :" . $id_lanc);
          // Inserir log em sis_log
