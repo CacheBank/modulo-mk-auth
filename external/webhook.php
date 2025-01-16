@@ -169,10 +169,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // if($amount_fees){
             //     $updateQuery = $updateQuery.", tarifa_paga = ".$amount_fees." ";
             // }
-            $updateQuery = "UPDATE sis_lanc SET `status` = '".$statusName."', datapag = '".$datapagamento."', coletor = 'notificacao', num_recibos = 1, recibo='".$idtransaction."', valorpag = ".$amountPaid."";
-            if($amount_fees){
-                $updateQuery = $updateQuery.", tarifa_paga = ".$amount_fees." ";
-            }
+            $updateQuery = "UPDATE sis_lanc SET valorpag = ".$amountPaid."";
+            
             $updateQuery = $updateQuery. "
              WHERE  id  = '".$id_lanc."'
                 and login = '".$login_cliente."' 
@@ -187,11 +185,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo '
             query'.$updateQuery.'
             ';
-            if (!$conn->query($updateQuery))
-                {
-                echo("Error description: " . mysqli_error($conn));
-                }
-           
+            $stmt = $pdo->prepare($updateQuery);
+            if (!$stmt) {
+                throw new Exception("Erro ao preparar declaração SQL para atualizar cachebank_invoices: " . $pdo->error);
+            }
+            $stmt->bindParam(":linha_digitavel", $paymentRes["boleto"]["linhadigitavel"], PDO::PARAM_STR);
+            $stmt->bindParam(":nosso_numero", $paymentRes["boleto"]["nossonumero"], PDO::PARAM_STR);
+            $stmt->bindParam(":codigo_barra", $paymentRes["boleto"]["codigobarra"], PDO::PARAM_STR);
+
+            $stmt->bindParam(":status", $statusName, PDO::PARAM_STR);
+
+            $stmt->bindParam(":txid", $paymentRes["pix"]["txid"], PDO::PARAM_STR);
+            $stmt->bindParam(":pix_copia_cola", $paymentRes["pix"]["qrcode"], PDO::PARAM_STR);
+
+            $stmt->bindParam(":payment_date", $paymentRes["datapagamento"], PDO::PARAM_STR);
+
+            $stmt->bindParam(":amount_paid", $amountPaid, PDO::PARAM_STR);
+            $stmt->bindParam(":amount_fees", $amount_fees, PDO::PARAM_STR);
+        
+
+            $stmt->bindParam(":id_lanc", $id_lanc, PDO::PARAM_INT);
+            
+            if (!$stmt->execute()) {
+                throw new Exception("Erro ao executar declaração SQL para atualizar cachebank_invoices: " . $stmt->error);
+            }
+            $stmt=null;
         
 
         // Fim lançamento Financeiro
