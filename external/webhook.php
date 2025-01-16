@@ -73,36 +73,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         echo ' End check se webhook log já existe';
 
-        log_message("Consultando dados externos da transação WebHookId: " . $last_id);
-        $paymentRes=obterDadosWebHookBoleto($pdo, $notification_id, $idtransaction);
-        $id_lanc_ref=str_replace('ref-', "", $paymentRes["referenciapedido"]);
 
         // Comparar txid com pix_info e atualizar sis_lanc
                 $query = "SELECT cinvoices.idtransaction as idtransaction, cinvoices.id_cliente as id_cliente, cinvoices.id_lanc as id_lanc, sis_cliente.login as login_cliente 
                           FROM cachebank_invoices cinvoices
+                          JOIN cachebank_webhook_logs wslog ON wslog.idtransaction = cinvoices.idtransaction
                           JOIN sis_cliente sis_cliente ON sis_cliente.id = cinvoices.id_cliente 
-                          WHERE cinvoices.id_lanc=:id_lanc limit 1;";
+                          WHERE wslog.id = :wslogId and wslog.notification_id=:notification_id order by wslog.notification_date desc limit 1;";
                 $stmt = $pdo->prepare($query);
                 if (!$stmt) {
                     throw new Exception("Erro ao preparar declaração SQL para selecionar de pix_info: " . $pdo->error);
                 }
-                $stmt->bindParam(":id_lanc", $id_lanc_ref,  PDO::PARAM_INT);
+                $stmt->bindParam(":wslogId", $last_id,  PDO::PARAM_INT);
+                $stmt->bindParam(":notification_id", $notification_id, PDO::PARAM_STR);
                 $stmt->execute();
                 $resDb=$stmt->fetch(PDO::FETCH_ASSOC);
 
                 $idtransaction=$resDb["idtransaction"];
-                //$id_cliente=$resDb["id_cliente"];
+                $id_cliente=$resDb["id_cliente"];
                 $id_lanc=$resDb["id_lanc"];
                 $login_cliente=$resDb["login_cliente"];
 
 
+        log_message("Consultando dados externos da transação WebHookId: " . $last_id);
+        $paymentRes=obterDadosWebHookBoleto($pdo, $notification_id, $idtransaction);
         $amountPaid=$paymentRes["status"]===7?$paymentRes["valortotal"]:$paymentRes["valorpago"];
         $statusName=getStatusPaymentName($paymentRes["status"]);
-
-        if($amountPaid<=0 || !$amountPaid){
+        if($paymentRes["status"]===3){
             log_message("Não atualizado no Mk-Auth. Transação foi cancelada na Cachê Bank." . $last_id);
-        }
+            return ;
+        } 
 
+        echo "Dados da transação
+        ";
+       // print_r($paymentRes);
+        echo "
+        Fim dados da transação";
 
         $amount_fees=$paymentRes["custo"];
 
@@ -156,16 +162,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ";
 
         // Obtem dados do lançamento atual
-        $aberto_sql2 = "SELECT id, datapag, nossonum, recibo, valorpag, `login`, datapag, coletor,`status`, formapag,num_recibos,referencia,datavenc,deltitulo from sis_lanc WHERE `login` = '".$login_cliente."' ";
-        $aberto_result2 = $conn->query($aberto_sql2);
-        while ($fatura = $aberto_result2->fetch_assoc()) {
-            print_r($fatura);
-            echo '
-            --------------------';
-        }
-
-        // Obtem dados do lançamento 1062
-        $aberto_sql2 = "SELECT id, datapag, nossonum, recibo, valorpag, `login`, datapag, coletor,`status`, formapag,num_recibos,referencia,datavenc,deltitulo from sis_lanc WHERE `id` = '1062' ";
+        $aberto_sql2 = "SELECT id, datapag, nossonum, valorpag, login from sis_lanc WHERE id = ".$id_lanc." ";
         $aberto_result2 = $conn->query($aberto_sql2);
         while ($fatura = $aberto_result2->fetch_assoc()) {
             print_r($fatura);
@@ -175,49 +172,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     
             $stmt=null;
-            
-            $dataFormatada = date("Y-m-d", strtotime($paymentRes["datapagamento"])).' 00:00:00';
+            $datapagamento= $paymentRes["datapagamento"];
             echo '
-            dataFormatada:'.$dataFormatada.'
-            ';
-            echo '
-            datapagamento:'.$paymentRes["datapagamento"].'
-            ';
-        
+            datapagamento'.$datapagamento;
+            $dataFormatada = date("Y-m-d H:i:s", strtotime($datapagamento));
 
             log_message("Aualizando2 lançamento usando nosso numero " . $paymentRes["boleto"]["nossonumero"]);
 
-        
-            $updateQuery = "UPDATE sis_lanc SET formapag = 'dinheiro', `status` = '".$statusName."', valorpag = ".$amountPaid.", coletor = 'notificacao', num_recibos = 1, datapag = (select now() as date)  ";
+            $updateQuery = "UPDATE sis_lanc SET formapag = 'dinheiro', `status` = '".$statusName."', num_recibos = 1, datapag = DATE_FORMAT('".$dataFormatada."', '%Y-%m-%d %H:%i:%s'), coletor = 'notificacao', valorpag = '".$amountPaid."'";
             if($amount_fees){
-                $updateQuery = $updateQuery.", tarifa_paga = ".$amount_fees." ";
+                $updateQuery = $updateQuery.", tarifa_paga = '".$amount_fees."' ";
             }
-            $updateQuery = $updateQuery. "
-             WHERE  id  = '".$id_lanc."'
-                and login = '".$login_cliente."' 
-                and deltitulo = 0
-                and (
-                    `status` != '".$statusName."'
-                    or coletor != 'notificacao'
-                    or valorpag != ".$amountPaid."
-                    or formapag != 'dinheiro' 
-                    or datapag is null
-                ) 
-             ";
-            // echo '
-            // query'.$updateQuery.'
-            // ';
-            $stmt = $pdo->prepare($updateQuery);
-
-            if (!$stmt->execute()) {
-                // Get the error information using PDO::errorInfo()
-                $errorInfo = $stmt->errorInfo();
-                throw new Exception("Erro ao executar declaração SQL para atualizar sis_lanc: " . $errorInfo[2]); 
-            }
-            $stmt=null;
+            $updateQuery = $updateQuery. " WHERE id  = ".$id_lanc." and login = '".$login_cliente."'";
+            echo '
+            query'.$updateQuery.'
+            ';
+            if (!$conn->query($updateQuery))
+                {
+                echo("Error description: " . mysqli_error($conn));
+                }
+           
         
 
         // Fim lançamento Financeiro
+
 
         log_message("Gerando log de pagamento :" . $id_lanc);
          // Inserir log em sis_log
@@ -256,4 +234,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $pdo=null;
 ?>
-
