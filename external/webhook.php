@@ -156,6 +156,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             --------------------';
         }
 
+        // Obtem dados do lançamento 1062
+        $aberto_sql2 = "SELECT id, datapag, nossonum, recibo, valorpag, `login`, datapag, coletor,`status`, formapag,referencia,datavenc,deltitulo from sis_lanc WHERE `id` = '1062' ";
+        $aberto_result2 = $conn->query($aberto_sql2);
+        while ($fatura = $aberto_result2->fetch_assoc()) {
+            print_r($fatura);
+            echo '
+            --------------------';
+        }
+
     
             $stmt=null;
             
