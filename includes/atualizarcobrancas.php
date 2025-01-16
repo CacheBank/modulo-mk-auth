@@ -111,7 +111,7 @@
             log_message("syncPix | Erro ao sincronizar os qrcode pix");
         }
     }
- 
+ /*
 
     $listBillDuplicated = "SELECT 
             DISTINCT(sis_lanc.uuid_lanc) as uuid_lanc, 
@@ -149,6 +149,6 @@
         $stmt=null;
 
     }
-
+*/
     $conn->close();
 ?>
