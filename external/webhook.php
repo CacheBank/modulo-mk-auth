@@ -201,7 +201,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     or coletor != 'notificacao'
                     or valorpag != ".$amountPaid."
                     or formapag != 'dinheiro' 
-                    or recibo is null
+                    or datapag is null
                 ) 
              ";
             // echo '
