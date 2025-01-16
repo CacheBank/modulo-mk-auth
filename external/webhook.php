@@ -169,8 +169,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // if($amount_fees){
             //     $updateQuery = $updateQuery.", tarifa_paga = ".$amount_fees." ";
             // }
-            $updateQuery = "UPDATE sis_lanc SET valorpag = ".$amountPaid."";
-            
+            $updateQuery = "UPDATE sis_lanc SET formapag = 'dinheiro', `status` = '".$statusName."', valorpag = ".$amountPaid."";
+
             $updateQuery = $updateQuery. "
              WHERE  id  = '".$id_lanc."'
                 and login = '".$login_cliente."' 
