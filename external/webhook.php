@@ -179,7 +179,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     or valorpag != ".$amountPaid."
                     or formapag != 'dinheiro'
                 ) 
-             ";
+             ";;
             echo '
             query'.$updateQuery.'
             ';
