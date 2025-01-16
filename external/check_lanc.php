@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             return 'not found';
         }
        
-        $aberto_sql2 = "SELECT id, datapag, nossonum, recibo, valorpag, `login`, datapag, coletor,`status`, formapag,num_recibos,referencia,datavenc,deltitulo from sis_lanc sis_lanc  left join cachebank_invoices cinvoices on cinvoices.id_lanc=sis_lanc.id WHERE sis_lanc.id = ".$lancId." ";
+        $aberto_sql2 = "SELECT cinvoices.idtransaction, sis_lanc.id, sis_lanc.datapag, sis_lanc.nossonum, sis_lanc.recibo, sis_lanc.valorpag, sis_lanc.login, sis_lanc.coletor, sis_lanc.status, sis_lanc.formapag,sis_lanc.num_recibos,sis_lanc.referencia,sis_lanc.datavenc,sis_lanc.deltitulo from sis_lanc sis_lanc  left join cachebank_invoices cinvoices on cinvoices.id_lanc=sis_lanc.id WHERE sis_lanc.id = ".$lancId." ";
         $aberto_result2 = $conn->query($aberto_sql2);
         while ($fatura = $aberto_result2->fetch_assoc()) {
             $json_data = json_encode($fatura);
