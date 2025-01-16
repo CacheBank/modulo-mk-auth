@@ -204,9 +204,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     or recibo is null
                 ) 
              ";
-            echo '
-            query'.$updateQuery.'
-            ';
+            // echo '
+            // query'.$updateQuery.'
+            // ';
             $stmt = $pdo->prepare($updateQuery);
 
             if (!$stmt->execute()) {
