@@ -95,11 +95,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $amountPaid=$paymentRes["status"]===7?$paymentRes["valortotal"]:$paymentRes["valorpago"];
         $statusName=getStatusPaymentName($paymentRes["status"]);
 
-        echo "Dados da transação
-        ";
-        print_r($paymentRes);
-        echo "
-        Fim dados da transação";
 
         $amount_fees=$paymentRes["custo"];
 
