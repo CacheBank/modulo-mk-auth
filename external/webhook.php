@@ -169,7 +169,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if($amount_fees){
                 $updateQuery = $updateQuery.", tarifa_paga = '".$amount_fees."' ";
             }
-            $updateQuery = $updateQuery. " WHERE id  = ".$id_lanc." and login = '".$login_cliente."'";
+            $updateQuery = $updateQuery. "
+             WHERE  
+                id  = ".$id_lanc." 
+                and login = '".$login_cliente."' 
+                and (
+                    `status` != '".$statusName."'
+                    or datapag != DATE_FORMAT('".$dataFormatada."', '%Y-%m-%d %H:%i:%s')
+                    or coletor != 'notificacao'
+                    or valorpag != '".$amountPaid."'
+                    or formapag != 'dinheiro'
+                ) 
+             ";
             echo '
             query'.$updateQuery.'
             ';
