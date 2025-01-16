@@ -158,8 +158,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     
             $stmt=null;
+            
+            $dataFormatada = date("Y-m-d", strtotime($paymentRes["datapagamento"]));
             echo '
-            datapagamento'.$paymentRes["datapagamento"];
+            datapagamento'.$dataFormatada;
         
 
             log_message("Aualizando2 lançamento usando nosso numero " . $paymentRes["boleto"]["nossonumero"]);
@@ -185,7 +187,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             query'.$updateQuery.'
             ';
             $stmt = $pdo->prepare($updateQuery);
-            $stmt->bindParam(":payment_date", $paymentRes["datapagamento"], PDO::PARAM_STR);
+            $stmt->bindParam(":payment_date", $dataFormatada, PDO::PARAM_STR);
 
             if (!$stmt) {
                 throw new Exception("Erro ao preparar declaração SQL para atualizar sis_lanc: " . $pdo->error);
