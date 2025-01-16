@@ -159,7 +159,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
             $stmt=null;
             
-            $dataFormatada = date("Y-m-d H:i:s", strtotime($paymentRes["datapagamento"]));
+            $dataFormatada = date("Y-m-d", strtotime($paymentRes["datapagamento"])).' 00:00:00';
             echo '
             dataFormatada:'.$dataFormatada.'
             ';
@@ -172,7 +172,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // $updateQuery = "UPDATE sis_lanc SET formapag = 'dinheiro', `status` = '".$statusName."', datapag = '".$datapagamento."', coletor = 'notificacao', num_recibos = 1, recibo='".$idtransaction."', valorpag = ".$amountPaid."";
          
-            $updateQuery = "UPDATE sis_lanc SET formapag = 'dinheiro', `status` = '".$statusName."', valorpag = ".$amountPaid.", coletor = 'notificacao', num_recibos = 1, datapag = :datapag ";
+            $updateQuery = "UPDATE sis_lanc SET formapag = 'dinheiro', `status` = '".$statusName."', valorpag = ".$amountPaid.", coletor = 'notificacao', num_recibos = 1, datapag = '".$dataFormatada."' ";
             if($amount_fees){
                 $updateQuery = $updateQuery.", tarifa_paga = ".$amount_fees." ";
             }
@@ -191,8 +191,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             query'.$updateQuery.'
             ';
             $stmt = $pdo->prepare($updateQuery);
-
-            $stmt->bindParam(":datapag", $dataFormatada, PDO::PARAM_STR);
 
             if (!$stmt->execute()) {
                 // Get the error information using PDO::errorInfo()
