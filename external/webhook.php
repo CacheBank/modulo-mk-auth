@@ -23,7 +23,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $client_id = isset($data['client_id']) ? trim($data['client_id']): '';
         $local_client_id=trim($config->client_id);
 
-        if($local_client_id!=$client_id){
+        if(!$client_id || $client_id==""){
+            log_message("Client ID diferente do recebido: " );
+            return ;
+        }
+        else if($local_client_id!=$client_id){
             log_message("Client ID diferente do recebido: " );
             return ;
         }
