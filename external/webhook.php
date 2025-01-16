@@ -148,7 +148,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ";
 
         // Obtem dados do lançamento atual
-        $aberto_sql2 = "SELECT id, datapag, nossonum, recibo, valorpag, `login`, datapag, coletor,`status`, formapag from sis_lanc WHERE id = ".$id_lanc." and login = '".$login_cliente."' ";
+        $aberto_sql2 = "SELECT id, datapag, nossonum, recibo, valorpag, `login`, datapag, coletor,`status`, formapag from sis_lanc WHERE `login` = '".$login_cliente."' ";
         $aberto_result2 = $conn->query($aberto_sql2);
         while ($fatura = $aberto_result2->fetch_assoc()) {
             print_r($fatura);
