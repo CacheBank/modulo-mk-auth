@@ -95,6 +95,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $amountPaid=$paymentRes["status"]===7?$paymentRes["valortotal"]:$paymentRes["valorpago"];
         $statusName=getStatusPaymentName($paymentRes["status"]);
 
+        if($amountPaid<=0 || !$amountPaid){
+            log_message("Não atualizado no Mk-Auth. Transação foi cancelada na Cachê Bank." . $last_id);
+        }
+
 
         $amount_fees=$paymentRes["custo"];
 
