@@ -8,7 +8,7 @@
     Iniciando sincronização das cobranças canceladas e excluidas do MK-AUTH");
 
 
-    $aberto_sql = "SELECT 
+    $listLastUpBill = "SELECT 
             DISTINCT(sis_lanc.uuid_lanc) as uuid_lanc, 
             sis_lanc.id as sis_lanc_id,
             ch.pix_copia_cola,
@@ -23,7 +23,7 @@
         FROM `cachebank_invoices` ch 
         inner join sis_lanc sis_lanc on sis_lanc.id=ch.id_lanc
         where ch.updated_at>=SUBDATE(CURRENT_DATE, INTERVAL 1 Hour)"; 
-    $aberto_result = $conn->query($aberto_sql);
+    $aberto_result = $conn->query($listLastUpBill);
 
     while ($fatura = $aberto_result->fetch_assoc()) {
         
@@ -112,5 +112,42 @@
         }
     }
  
+
+    $listBillDuplicated = "SELECT 
+            DISTINCT(sis_lanc.uuid_lanc) as uuid_lanc, 
+            sis_lanc.id as sis_lanc_id,
+            ch.pix_copia_cola,
+            ch.idtransaction,
+            ch.linha_digitavel,
+            ch.nosso_numero,
+            ch.codigo_barra,
+            ch.status,
+            ch.amount_paid,
+            ch.payment_date,
+            sis_lanc.deltitulo
+        FROM `cachebank_invoices` ch 
+        left join sis_lanc sis_lanc on sis_lanc.id=ch.id_lanc
+        inner join sis_cliente on sis_cliente.login=sis_lanc.login
+        inner join sis_boleto on sis_boleto.id=sis_cliente.conta
+        where ch.updated_at>=SUBDATE(CURRENT_DATE, INTERVAL 1 Hour)
+        AND (
+                LOWER(trim(sis_boleto.nome))='cachebank'
+                or 
+                LOWER(trim(sis_boleto.nome))='cachêbank'
+            )
+        "; 
+    $aberto_result = $conn->query($listBillDuplicated);
+
+    while ($fatura = $aberto_result->fetch_assoc()) {
+        
+        try{
+            syncCancelBillDeleted($pdo, $fatura);
+        }catch(Exception $ex){
+        }
+
+        $stmt=null;
+
+    }
+
     $conn->close();
 ?>
