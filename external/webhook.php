@@ -187,7 +187,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             query'.$updateQuery.'
             ';
             $stmt = $pdo->prepare($updateQuery);
-            $stmt->bindParam(":payment_date", $dataFormatada, PDO::PARAM_STR);
 
             if (!$stmt) {
                 throw new Exception("Erro ao preparar declaração SQL para atualizar sis_lanc: " . $pdo->error);
