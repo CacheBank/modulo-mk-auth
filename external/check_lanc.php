@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
        
         $aberto_sql2 = "SELECT cinvoices.idtransaction, id, datapag, nossonum, recibo, valorpag, `login`, datapag, coletor,`status`, formapag,num_recibos,referencia,datavenc,deltitulo from sis_lanc
-            inner join cachebank_invoices cinvoices on cinvoices.id_lanc=sis_lanc.id
+            left join cachebank_invoices cinvoices on cinvoices.id_lanc=sis_lanc.id
              WHERE sis_lanc.id = ".$lancId." ";
         $aberto_result2 = $conn->query($aberto_sql2);
         while ($fatura = $aberto_result2->fetch_assoc()) {
