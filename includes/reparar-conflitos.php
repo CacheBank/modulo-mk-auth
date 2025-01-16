@@ -262,7 +262,7 @@
                     throw new Exception("Erro ao executar declaração SQL para atualizar sis_lanc: " . $pdo->error);
                 }
             }catch(Exception $ex){
-                log_message("Erro ao sincronizar os qrcode pix".$ex->getMessage());
+                log_message("syncBill | Erro ao sincronizar os qrcode pix".$ex->getMessage());
             }
 
 

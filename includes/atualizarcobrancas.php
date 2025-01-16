@@ -90,7 +90,7 @@
                 throw new Exception("Erro ao executar declaração SQL para atualizar sis_lanc: " . $conn->error);
             }
         }catch(Exception $ex){
-            log_message("Erro ao sincronizar os qrcode pix");
+            log_message("syncPay | Erro ao sincronizar os qrcode pix");
         }
         
     }
@@ -108,7 +108,7 @@
                 log_message("Falha na atualização do boleto  ".$conn->error);
             }
         }catch(Exception $ex){
-            log_message("Erro ao sincronizar os qrcode pix");
+            log_message("syncPix | Erro ao sincronizar os qrcode pix");
         }
     }
  
