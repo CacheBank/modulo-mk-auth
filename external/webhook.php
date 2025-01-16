@@ -188,11 +188,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->bindParam(":payment_date", $paymentRes["datapagamento"], PDO::PARAM_STR);
 
             if (!$stmt) {
-                throw new Exception("Erro ao preparar declaração SQL para atualizar cachebank_invoices: " . $pdo->error);
+                throw new Exception("Erro ao preparar declaração SQL para atualizar sis_lanc: " . $pdo->error);
             }
             
             if (!$stmt->execute()) {
-                throw new Exception("Erro ao executar declaração SQL para atualizar cachebank_invoices: " . $stmt->error);
+                throw new Exception("Erro ao executar declaração SQL para atualizar sis_lanc: " . $stmt->error);
             }
             $stmt=null;
         
