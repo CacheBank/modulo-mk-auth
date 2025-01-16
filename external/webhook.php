@@ -158,16 +158,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     
             $stmt=null;
-            $datapagamento= $paymentRes["datapagamento"];
             echo '
-            datapagamento'.$datapagamento;
-          //  $dataFormatada = date("Y-m-d H:i:s", strtotime($datapagamento));
+            datapagamento'.$paymentRes["datapagamento"];
+        
 
             log_message("Aualizando2 lançamento usando nosso numero " . $paymentRes["boleto"]["nossonumero"]);
 
             // $updateQuery = "UPDATE sis_lanc SET formapag = 'dinheiro', `status` = '".$statusName."', datapag = '".$datapagamento."', coletor = 'notificacao', num_recibos = 1, recibo='".$idtransaction."', valorpag = ".$amountPaid."";
          
-            $updateQuery = "UPDATE sis_lanc SET formapag = 'dinheiro', `status` = '".$statusName."', valorpag = ".$amountPaid.", coletor = 'notificacao', num_recibos = 1, datapag = '".$datapagamento."'  ";
+            $updateQuery = "UPDATE sis_lanc SET formapag = 'dinheiro', `status` = '".$statusName."', valorpag = ".$amountPaid.", coletor = 'notificacao', num_recibos = 1, datapag = :payment_date ";
             if($amount_fees){
                 $updateQuery = $updateQuery.", tarifa_paga = ".$amount_fees." ";
             }
@@ -179,32 +178,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     or coletor != 'notificacao'
                     or valorpag != ".$amountPaid."
                     or formapag != 'dinheiro' 
-                    or datapag is null
+                    or recibo is null
                 ) 
              ";;
             echo '
             query'.$updateQuery.'
             ';
             $stmt = $pdo->prepare($updateQuery);
+            $stmt->bindParam(":payment_date", $paymentRes["datapagamento"], PDO::PARAM_STR);
+
             if (!$stmt) {
                 throw new Exception("Erro ao preparar declaração SQL para atualizar cachebank_invoices: " . $pdo->error);
             }
-            $stmt->bindParam(":linha_digitavel", $paymentRes["boleto"]["linhadigitavel"], PDO::PARAM_STR);
-            $stmt->bindParam(":nosso_numero", $paymentRes["boleto"]["nossonumero"], PDO::PARAM_STR);
-            $stmt->bindParam(":codigo_barra", $paymentRes["boleto"]["codigobarra"], PDO::PARAM_STR);
-
-            $stmt->bindParam(":status", $statusName, PDO::PARAM_STR);
-
-            $stmt->bindParam(":txid", $paymentRes["pix"]["txid"], PDO::PARAM_STR);
-            $stmt->bindParam(":pix_copia_cola", $paymentRes["pix"]["qrcode"], PDO::PARAM_STR);
-
-            $stmt->bindParam(":payment_date", $paymentRes["datapagamento"], PDO::PARAM_STR);
-
-            $stmt->bindParam(":amount_paid", $amountPaid, PDO::PARAM_STR);
-            $stmt->bindParam(":amount_fees", $amount_fees, PDO::PARAM_STR);
-        
-
-            $stmt->bindParam(":id_lanc", $id_lanc, PDO::PARAM_INT);
             
             if (!$stmt->execute()) {
                 throw new Exception("Erro ao executar declaração SQL para atualizar cachebank_invoices: " . $stmt->error);
