@@ -165,7 +165,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             log_message("Aualizando2 lançamento usando nosso numero " . $paymentRes["boleto"]["nossonumero"]);
 
-            $updateQuery = "UPDATE sis_lanc SET formapag = 'dinheiro', `status` = '".$statusName."', datapag = '".$datapagamento."', coletor = 'notificacao', valorpag = ".$amountPaid."";
+            $updateQuery = "UPDATE sis_lanc SET formapag = 'dinheiro', `status` = '".$statusName."', datapag = '".$datapagamento."', coletor = 'notificacao', recibo='".$idtransaction."', valorpag = ".$amountPaid."";
             if($amount_fees){
                 $updateQuery = $updateQuery.", tarifa_paga = ".$amount_fees." ";
             }
@@ -177,7 +177,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     `status` != '".$statusName."'
                     or coletor != 'notificacao'
                     or valorpag != ".$amountPaid."
-                    or formapag != 'dinheiro'
+                    or formapag != 'dinheiro' 
+                    or recibo is null
                 ) 
              ";;
             echo '
