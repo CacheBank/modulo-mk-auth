@@ -23,23 +23,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $local_client_secret=trim($config->client_secret);
 
         if(!$client_id || $client_id==""){
-            log_message("Client ID diferente do recebido: " );
-            return ;
+            log_message("Client ID diferente do recebido" );
+            return 'Client ID diferente do recebido';
         }
         else if($local_client_id!=$client_id){
             echo 'not found';
-            return ;
+            return 'not found' ;
         }else if($local_client_secret!=$client_secret){
             echo 'not found';
-            return ;
+            return 'not found';
         }
        
-        $aberto_sql2 = "SELECT id, datapag, nossonum, recibo, valorpag, `login`, datapag, coletor,`status`, formapag,num_recibos,referencia,datavenc,deltitulo from sis_lanc WHERE `id` = '".$lancId."' ";
+        $aberto_sql2 = "SELECT id, datapag, nossonum, recibo, valorpag, `login`, datapag, coletor,`status`, formapag,num_recibos,referencia,datavenc,deltitulo from sis_lanc WHERE `id` = ".$lancId." ";
         $aberto_result2 = $conn->query($aberto_sql2);
         $results = $aberto_result2->fetchAll(PDO::FETCH_ASSOC);
         $json_data = json_encode($results);
 
         echo $json_data;
+
+        return $json_data;
 
 
 }
