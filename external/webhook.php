@@ -148,7 +148,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ";
 
         // Obtem dados do lançamento atual
-        $aberto_sql2 = "SELECT id, datapag, nossonum, recibo, valorpag, `login`, datapag, coletor,`status`, formapag,referencia,datavenc from sis_lanc WHERE `login` = '".$login_cliente."' ";
+        $aberto_sql2 = "SELECT id, datapag, nossonum, recibo, valorpag, `login`, datapag, coletor,`status`, formapag,referencia,datavenc,deltitulo from sis_lanc WHERE `login` = '".$login_cliente."' ";
         $aberto_result2 = $conn->query($aberto_sql2);
         while ($fatura = $aberto_result2->fetch_assoc()) {
             print_r($fatura);
@@ -170,8 +170,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             log_message("Aualizando2 lançamento usando nosso numero " . $paymentRes["boleto"]["nossonumero"]);
 
-            // $updateQuery = "UPDATE sis_lanc SET formapag = 'dinheiro', `status` = '".$statusName."', datapag = '".$datapagamento."', coletor = 'notificacao', num_recibos = 1, recibo='".$idtransaction."', valorpag = ".$amountPaid."";
-         
+        
             $updateQuery = "UPDATE sis_lanc SET formapag = 'dinheiro', `status` = '".$statusName."', valorpag = ".$amountPaid.", coletor = 'notificacao', num_recibos = 1, datapag = '".$dataFormatada."' ";
             if($amount_fees){
                 $updateQuery = $updateQuery.", tarifa_paga = ".$amount_fees." ";
@@ -179,6 +178,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $updateQuery = $updateQuery. "
              WHERE  id  = '".$id_lanc."'
                 and login = '".$login_cliente."' 
+                and deltitulo = 0
                 and (
                     `status` != '".$statusName."'
                     or coletor != 'notificacao'
