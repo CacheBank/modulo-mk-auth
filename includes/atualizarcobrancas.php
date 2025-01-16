@@ -111,44 +111,6 @@
             log_message("syncPix | Erro ao sincronizar os qrcode pix");
         }
     }
- /*
-
-    $listBillDuplicated = "SELECT 
-            DISTINCT(sis_lanc.uuid_lanc) as uuid_lanc, 
-            sis_lanc.id as sis_lanc_id,
-            ch.pix_copia_cola,
-            ch.idtransaction,
-            ch.linha_digitavel,
-            ch.nosso_numero,
-            ch.codigo_barra,
-            ch.status,
-            ch.amount_paid,
-            ch.payment_date,
-            sis_lanc.deltitulo
-        FROM `cachebank_invoices` ch 
-        left join sis_lanc sis_lanc on sis_lanc.id=ch.id_lanc
-        inner join sis_cliente on sis_cliente.login=sis_lanc.login
-        inner join sis_boleto on sis_boleto.id=sis_cliente.conta
-        where ch.updated_at>=SUBDATE(CURRENT_DATE, INTERVAL 1 Hour)
-        AND (
-                LOWER(trim(sis_boleto.nome))='cachebank'
-                or 
-                LOWER(trim(sis_boleto.nome))='cachêbank'
-            )
-        AND sis_lanc.id IS NUll
-        "; 
-    $aberto_result = $conn->query($listBillDuplicated);
-
-    while ($fatura = $aberto_result->fetch_assoc()) {
-        
-        try{
-            syncCancelBillDeleted($pdo, $fatura);
-        }catch(Exception $ex){
-        }
-
-        $stmt=null;
-
-    }
-*/
+ 
     $conn->close();
 ?>
