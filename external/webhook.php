@@ -161,7 +161,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             $dataFormatada = date("Y-m-d H:i:s", strtotime($paymentRes["datapagamento"]));
             echo '
-            datapagamento'.$dataFormatada;
+            datapagamento:'.$dataFormatada.'
+            ';
         
 
             log_message("Aualizando2 lançamento usando nosso numero " . $paymentRes["boleto"]["nossonumero"]);
